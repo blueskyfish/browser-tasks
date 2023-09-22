@@ -1,0 +1,18 @@
+
+header {
+    align-items: center;
+    background: var(--color-header-bg);
+    color: var(--color-header-txt);
+    display: flex;
+    flex-direction: row;
+    padding: var(--padding-y) var(--padding-x);
+}
+
+.logoBtn {
+    background: transparent;
+}
+
+.headerTitle {
+    font-size: var(--font-size-header);
+    margin-left: var(--padding-x);
+}
