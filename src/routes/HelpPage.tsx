@@ -1,6 +1,14 @@
+import { mdiLightbulbOnOutline } from '@mdi/js';
+import { useContext, useEffect } from 'react';
+import Header from '../components/Header';
+import SidebarContext from '../context/sidebar.context';
 
-export default function HelpPage() {
+export function HelpPage() {
+    const {setSideMenu} = useContext(SidebarContext);
+    useEffect(() => {
+        setSideMenu('help');
+    }, [setSideMenu])
     return (
-      <h3>Help</h3>
-    );
+        <Header title={"Help"} icon={mdiLightbulbOnOutline}/>
+    )
 }
