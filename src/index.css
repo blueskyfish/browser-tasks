@@ -1,6 +1,7 @@
 html, html body {
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 
 body {
@@ -15,9 +16,19 @@ body {
 :root {
   --color-header-bg: #444;
   --color-header-txt: #fff;
+  --color-sidebar-bg: rgba(0, 0, 0, 8%);
+  --color-sidebar-txt: #444;
 
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
 
   --font-size-header: 1.2rem;
+
+  --width-sidebar: 18rem;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
