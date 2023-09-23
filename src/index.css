@@ -16,7 +16,7 @@ body {
 :root {
   --color-header-bg: #444;
   --color-header-txt: #fff;
-  --color-sidebar-bg: rgba(0, 0, 0, 8%);
+  --color-sidebar-bg: rgba(0, 0, 0, 6%);
   --color-sidebar-txt: #444;
 
   --padding-x: 0.75rem;
@@ -25,6 +25,9 @@ body {
   --font-size-header: 1.2rem;
 
   --width-sidebar: 18rem;
+
+  --gap-1: 0.5rem;
+  --gap-2: 1rem;
 }
 
 #root {
