@@ -1,0 +1,17 @@
+
+.data-task-list {
+    width: calc(100% - 2 * var(--gap-2));
+    overflow: hidden;
+    margin: 0 var(--gap-2);
+}
+
+.task-row {
+    cursor: pointer !important;
+}
+
+.task-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

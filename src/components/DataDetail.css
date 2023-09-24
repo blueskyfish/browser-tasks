@@ -1,0 +1,6 @@
+
+.data-task-detail {
+    width: calc(100% - 2 * var(--gap-2));
+    overflow: hidden;
+    margin: 0 var(--gap-2);
+}

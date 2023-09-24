@@ -1,0 +1,18 @@
+
+.title-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title-bar .title {
+    font-size: 1.8rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+    padding-left: var(--gap-2);
+    margin: 0;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

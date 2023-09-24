@@ -7,10 +7,12 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import DetailPage, { detailLoader } from './routes/DetailPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
 import NewTask from './routes/NewTask';
 import Root from './routes/Root';
+import DataProvider from './store/DataProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
             {
                 element: <HomePage/>,
                 index: true,
+            },
+            {
+                path: 'task/:id',
+                element: <DetailPage/>,
+                loader: detailLoader
             },
             {
                 path: 'new',
@@ -42,7 +49,9 @@ const router = createBrowserRouter([
 ]);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+      <DataProvider>
+          <RouterProvider router={router}/>
+      </DataProvider>
   </React.StrictMode>
 );
 
