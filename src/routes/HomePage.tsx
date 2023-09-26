@@ -10,8 +10,8 @@ import './HomePage.css';
 
 export default function HomePage() {
     const { setSideMenu } = useContext(SidebarContext);
-    const { state} = useContext(DataContext);
-    const { taskMap } = state;
+    const { getState } = useContext(DataContext);
+    const { taskMap } = getState();
     const taskList = Object.values(taskMap);
     const navigate = useNavigate();
 

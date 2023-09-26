@@ -2,6 +2,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
@@ -11,12 +13,12 @@ import DetailPage, { detailLoader } from './routes/DetailPage';
 import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
-import NewTask from './routes/NewTask';
+import NewTask, { newLoader } from './routes/NewTask';
 import Root from './routes/Root';
 import DataProvider from './store/DataProvider';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 
 const router = createBrowserRouter([
@@ -40,7 +42,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'new',
-                element: <NewTask/>
+                element: <NewTask/>,
+                loader: newLoader,
             },
             {
                 path: 'help',
@@ -50,15 +53,18 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <Navigate to={"/"} replace={true}/>
+        element: <Navigate to={'/'} replace={true}/>
     }
 ]);
+
 root.render(
-  <React.StrictMode>
-      <DataProvider>
-          <RouterProvider router={router}/>
-      </DataProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DataProvider>
+                <RouterProvider router={router}/>
+            </DataProvider>
+        </LocalizationProvider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

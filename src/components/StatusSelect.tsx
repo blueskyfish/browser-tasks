@@ -9,6 +9,7 @@ export type StatusSelectProps = {
     register: UseFormRegister<Task>
 }
 export default function StatusSelect({ label, value, helpText, register}: StatusSelectProps) {
+    console.log('> Task Status =>', value);
     return (
         <FormControl sx={{minWidth: '100%'}} variant="outlined" color="primary">
             <InputLabel id="task__status__select__label">{label}</InputLabel>

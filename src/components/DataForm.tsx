@@ -1,7 +1,9 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { Task } from '../store/TaskModel';
+import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
+import DueDatePicker from './DueDatePicker';
+import KeywordField from './KeywordField';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
@@ -9,8 +11,16 @@ export type DataFormProps = {
     onSubmit: (task: Task) => void;
 }
 export default function DataForm({task, onSubmit}: DataFormProps) {
-    const { register, handleSubmit} = useForm<Task>();
-    console.log('> Data Form task =>', task);
+    const { register, setValue, handleSubmit} = useForm<Task>({
+        defaultValues: task ?? emptyTask(),
+    });
+    const handleKeywords = (newKeywords: string[]): void => {
+        setValue('keywords', newKeywords);
+    };
+
+    const handleDueDate = (dueDate: string | null): void => {
+        setValue('dueDate', dueDate);
+    };
 
     if (!task) {
         return (
@@ -31,7 +41,6 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                             required
                             id="task__title"
                             label="Task Title"
-                            defaultValue={task.title}
                             helperText="Task title is required"
                             fullWidth
                             variant="outlined"
@@ -40,7 +49,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                         />
                     </Grid>
                     <Grid item md={4}>
-                        DueDate
+                        <DueDatePicker value={task.dueDate} onChange={handleDueDate}/>
                     </Grid>
                     <Grid item md={8}>
                         <TextField
@@ -55,7 +64,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                         />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{marginBottom: 'var(--gap-2)'}}>
-                        Keywords
+                        <KeywordField keywords={task.keywords} onChange={(key) => handleKeywords(key)}/>
                     </Grid>
                 </Grid>
 

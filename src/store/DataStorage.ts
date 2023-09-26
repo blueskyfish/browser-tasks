@@ -20,3 +20,8 @@ export function loadTaskList(): Task[] {
     const text = localStorage.getItem(buildKey('list'));
     return jsonParse<Task[]>(text, []);
 }
+
+export function saveTaskList(list: Task[]): void {
+    const text = JSON.stringify(list);
+    localStorage.setItem(buildKey('list'), text);
+}
