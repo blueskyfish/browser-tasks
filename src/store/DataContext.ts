@@ -2,12 +2,12 @@ import { createContext } from 'react';
 import { DataAction, DataState, initialState } from './DataReducer';
 
 export type DataContextProps = {
-    state: DataState;
+    getState: () => DataState;
     dispatch: (action: DataAction<any>) => Promise<void>;
 }
 
 const initialContext: DataContextProps = {
-    state: initialState,
+    getState: () => initialState,
     dispatch: async (action) => {
         console.warn('Add real dispatch "%s"', action.type);
     }

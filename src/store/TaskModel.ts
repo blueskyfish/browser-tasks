@@ -7,6 +7,18 @@ export type Task = {
     content: string;
     done: boolean;
     status: TaskStatus;
-    dueDate?: string;
-    keywords?: string[];
+    dueDate: string | null;
+    keywords: string[];
 }
+
+export const emptyTask = (): Task => {
+    return {
+        id: '',
+        title: '',
+        content: '',
+        status: 'normal',
+        done: false,
+        dueDate: null,
+        keywords: []
+    };
+};

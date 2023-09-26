@@ -18,7 +18,7 @@ export default function DataProvider({children}: DataProviderProps) {
 
 
     return (
-        <DataContext.Provider value={{ state, dispatch: middlewareDispatch }}>
+        <DataContext.Provider value={{ getState: () => state, dispatch: middlewareDispatch }}>
             {children}
         </DataContext.Provider>
     );

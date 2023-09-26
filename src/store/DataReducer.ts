@@ -1,10 +1,12 @@
 import { produce } from 'immer';
-import { loadTaskList } from './DataStorage';
+import { loadTaskList, saveTaskList } from './DataStorage';
 import { Task } from './TaskModel';
 
 export enum DataActionKind {
     LoadTaskList = 'load',
     UpdateTaskList = 'updateTaskList',
+    AddTask = 'addTask',
+    UpdateTask = 'updateTask'
 }
 
 export interface DataAction<Data> {
@@ -28,7 +30,6 @@ export function dataReducer(state: DataState, action: DataAction<any>): DataStat
             return produce(state, (baseState) => {
                 return updateTaskList(baseState, payload);
             });
-            
         default:
             return state;
     }
@@ -36,11 +37,20 @@ export function dataReducer(state: DataState, action: DataAction<any>): DataStat
 
 export function middleware(dispatch: any) {
     return async function(action: DataAction<any>) {
-        const { type, payload } = action;
+        const {type, payload} = action;
         switch (type) {
             case DataActionKind.LoadTaskList:
-                const payload = loadTaskList();
-                dispatch(createAction(DataActionKind.UpdateTaskList, payload));
+                dispatch(createAction(DataActionKind.UpdateTaskList, loadTaskList()));
+                break;
+            case DataActionKind.AddTask:
+                const appendedList = appendTaskList(loadTaskList(), payload);
+                saveTaskList(appendedList);
+                dispatch(createAction(DataActionKind.UpdateTaskList, appendedList));
+                break;
+            case DataActionKind.UpdateTask:
+                const updatedList = replaceTaskList(loadTaskList(), payload);
+                saveTaskList(updatedList);
+                dispatch(createAction(DataActionKind.UpdateTaskList, updatedList));
                 break;
         }
     }
@@ -55,6 +65,20 @@ function updateTaskList(state: DataState, list: Task[]): DataState {
         ...state,
         taskMap
     };
+}
+
+export function appendTaskList(list: Task[], newTask: Task): Task[] {
+    const id = crypto.randomUUID();
+    return [...list, { ...newTask, id }];
+}
+
+export function replaceTaskList(list: Task[], changedTask: Task): Task[] {
+    return list.map((t: Task) => {
+        if (t.id === changedTask.id) {
+            return changedTask;
+        }
+        return t;
+    });
 }
 
 export function createAction<T>(type: DataActionKind, payload: T): DataAction<T> {

@@ -9,6 +9,8 @@
     "@mdi/js": "^7.2.96",
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.14.10",
+    "@mui/x-date-pickers": "^6.15.0",
+    "dayjs": "^1.11.10",
     "immer": "^10.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

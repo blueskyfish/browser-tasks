@@ -16,8 +16,8 @@ export function detailLoader({params}: LoaderFunctionArgs): DetailLoaderResponse
 }
 
 export default function DetailPage() {
-    const { state} = useContext(DataContext);
-    const { taskMap } = state;
+    const { getState } = useContext(DataContext);
+    const { taskMap } = getState();
     const { id } = useLoaderData() as DetailLoaderResponse;
     const task = taskMap[id] ?? null;
     const navigate = useNavigate();
