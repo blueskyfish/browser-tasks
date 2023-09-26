@@ -1,0 +1,17 @@
+
+.content-box {
+    margin-bottom: var(--gap-2);
+}
+
+.content-box .label {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: var(--gap-0);
+}
+.content-box .text {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4rem;
+}
