@@ -8,6 +8,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import DetailPage, { detailLoader } from './routes/DetailPage';
+import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
 import NewTask from './routes/NewTask';
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
                 path: 'task/:id',
                 element: <DetailPage/>,
                 loader: detailLoader
+            },
+            {
+                path: 'task/:id/edit',
+                element: <EditPage/>,
+                loader: detailLoader,
             },
             {
                 path: 'new',

@@ -47,7 +47,6 @@ export function middleware(dispatch: any) {
 }
 
 function updateTaskList(state: DataState, list: Task[]): DataState {
-    console.log(list);
     const taskMap: Record<string, Task> = {};
     list.forEach((t: Task) => {
         taskMap[t.id] = t;

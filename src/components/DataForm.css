@@ -1,5 +1,5 @@
 
-.data-task-detail {
+.data-task-form {
     width: calc(100% - 2 * var(--gap-2));
     overflow: hidden;
     margin: 0 var(--gap-2);
@@ -8,14 +8,10 @@
 
 .data-task-padding {
     padding: var(--gap-1) var(--gap-2);
+    margin-bottom: var(--gap-1);
     position: relative;
 }
 
-.data-fab {
-    margin: 0 !important;
-    top: auto;
-    right: 20px;
-    bottom: 20px;
-    left: auto;
-    position: absolute !important;
+.data-form-control {
+    margin-bottom: var(--gap-2);
 }
