@@ -1,4 +1,4 @@
-import { mdiDotsSquare, mdiSquareOutline, mdiStarBoxOutline, mdiStarOutline } from '@mdi/js';
+import { mdiDotsSquare, mdiSquareOutline, mdiStarBoxOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
 import React from 'react';
@@ -10,6 +10,19 @@ export type TaskIconProps = {
     tooltip?: string;
 }
 
+export const getTaskStatusIcon = (status: TaskStatus): string => {
+    switch (status) {
+        case 'normal':
+            return mdiSquareOutline;
+        case 'important':
+            return mdiStarBoxOutline;
+        case 'highly':
+            return mdiStarBoxOutline;
+        default:
+            return mdiDotsSquare;
+    }
+}
+
 /**
  * Shows the task status icon from {@link Task.status}
  *
@@ -19,26 +32,11 @@ export type TaskIconProps = {
  * @constructor
  */
 export default function TaskStatusIcon({status, size, tooltip}: TaskIconProps) {
-    let icon;
-    switch (status) {
-        default:
-            icon = (<Icon path={mdiDotsSquare} size={size ?? 1} />);
-            break;
-        case 'normal':
-            icon = (<Icon path={mdiSquareOutline} size={size ?? 1}/>);
-            break;
-        case 'important':
-            icon = (<Icon path={mdiStarBoxOutline} size={size ?? 1}/>);
-            break;
-        case 'highly':
-            icon = (<Icon path={mdiStarOutline} size={size ?? 1}/>)
-            break;
-    }
 
     if (tooltip) {
         return (
-            <Tooltip title={tooltip} placement={"top"}>{icon}</Tooltip>
+            <Tooltip title={tooltip} placement={"top"}><Icon path={getTaskStatusIcon(status)} size={size ?? 1}/></Tooltip>
         );
     }
-    return icon;
+    return <Icon path={getTaskStatusIcon(status)} size={size ?? 1}/>;
 }

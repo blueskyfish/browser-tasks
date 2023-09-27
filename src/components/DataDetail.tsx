@@ -5,6 +5,7 @@ import { Task } from '../store/TaskModel';
 import ContentBox from './ContentBox';
 import './DataDetail.css';
 import KeywordsLine from './KeywordsLine';
+import MissingData from './MissingData';
 import TitleBar from './TitleBar';
 
 export type DataDetailProps = {
@@ -12,6 +13,11 @@ export type DataDetailProps = {
     onTask: (task: Task) => void;
 }
 export default function DataDetail({task, onTask}: DataDetailProps) {
+    if (!task) {
+        return (
+            <MissingData title="Missing data" message="Task entity is not available!" action={{ href: '/', label: 'Task List' }}/>
+        );
+    }
     return (
         <Paper className="data-task-detail">
             <div className="data-task-padding">

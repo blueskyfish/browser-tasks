@@ -1,0 +1,7 @@
+
+.missing-data-pager {
+    width: calc(100% - 2 * var(--gap-2));
+    overflow: hidden;
+    margin: 0 var(--gap-2);
+    position: relative;
+}
