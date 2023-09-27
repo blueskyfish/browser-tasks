@@ -1,9 +1,10 @@
-import { Alert, AlertTitle, Button, Grid, Link, Paper, TextField } from '@mui/material';
+import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
 import DueDatePicker from './DueDatePicker';
 import KeywordsInput from './KeywordsInput';
+import MissingData from './MissingData';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
@@ -24,13 +25,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
 
     if (!task) {
         return (
-            <Paper className="data-task-form">
-                <Alert security="error">
-                    <AlertTitle>Missing data</AlertTitle>
-                    <p>No task available!</p>
-                    <p>Go back to <Link href="/" variant="body1" underline="hover">Task List</Link></p>
-                </Alert>
-            </Paper>
+            <MissingData title="Missing data" message="Task entity is not available!" action={{ href: '/', label: 'Task List'}}/>
         )
     }
     return (

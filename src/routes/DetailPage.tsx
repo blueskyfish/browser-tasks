@@ -1,9 +1,10 @@
-import { mdiTextBoxOutline } from '@mdi/js';
+import { mdiAlertCircleOutline } from '@mdi/js';
 import { LoaderFunctionArgs } from '@remix-run/router/utils';
 import { useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataDetail from '../components/DataDetail';
 import Header from '../components/Header';
+import { getTaskStatusIcon } from '../components/TaskStatusIcon';
 import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
 
@@ -28,8 +29,8 @@ export default function DetailPage() {
 
     return (
         <>
-            <Header title="Detail" icon={mdiTextBoxOutline}/>
-            { task !== null && <DataDetail task={task} onTask={handleTask}/> }
+            <Header title="Detail" icon={getTaskStatusIcon(task?.status ?? mdiAlertCircleOutline)}/>
+            <DataDetail task={task} onTask={handleTask}/>
         </>
     )
 }
