@@ -4,8 +4,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
+import { withAddTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
-import { createAction, DataActionKind } from '../store/DataReducer';
 import { emptyTask, Task } from '../store/TaskModel';
 
 export type newLoaderResponse = {
@@ -26,7 +26,7 @@ export default function NewTask() {
     }, [setSideMenu]);
 
     const handleSubmit = (task: Task): void => {
-        dispatch(createAction(DataActionKind.AddTask, task)).catch((reason) => console.error(reason));
+        dispatch(withAddTask(task));
         navigate('/');
     };
 
