@@ -33,7 +33,7 @@ export default function DueDatePicker({onChange, value}: DueDatePickerProps) {
     return (
         <div className="due-date-picker">
             <Tooltip title="Due Date enabled">
-                <Checkbox value={!!value} onChange={(ev) => handleCheckbox(ev.target.checked)}/>
+                <Checkbox defaultChecked={!!dueDate} onChange={(ev) => handleCheckbox(ev.target.checked)}/>
             </Tooltip>
             <DatePicker
                 label="Due Date"
@@ -42,7 +42,6 @@ export default function DueDatePicker({onChange, value}: DueDatePickerProps) {
                 displayWeekNumber
                 disablePast
                 disabled={!dueDate}
-                autoFocus={!!dueDate}
                 onChange={(value) => onChange(value ? dayjs(value).format('YYYY-MM-DD') : null)}
             />
         </div>

@@ -1,15 +1,30 @@
 import { Autocomplete, Chip, TextField } from '@mui/material';
-import { useState } from 'react';
 
+/**
+ * Properties for the component `KeywordField`
+ */
 export type KeywordFieldProps = {
+    /**
+     * The list of existing keywords
+     */
     keywords: string[];
+
+    /**
+     * The callback of change the kist of keywords
+     * @param newKeywords the new keywords
+     */
     onChange: (newKeywords: string[]) => void;
 }
 
-export default function KeywordField({keywords, onChange}: KeywordFieldProps) {
-    console.log('> Task Keywords =>', keywords);
+/**
+ * The component for the edit the keywords
+ *
+ * @param keywords The list of existing keywords
+ * @param onChange The callback of change the kist of keywords
+ * @constructor
+ */
+export default function KeywordsInput({keywords, onChange}: KeywordFieldProps) {
     const handleChange = (newKeywords: string[]): void => {
-        console.log('> New keywords =>', newKeywords);
         onChange(newKeywords);
     };
 

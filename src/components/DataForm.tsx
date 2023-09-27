@@ -1,9 +1,9 @@
-import { Button, Grid, Paper, TextField } from '@mui/material';
+import { Alert, AlertTitle, Button, Grid, Link, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
 import DueDatePicker from './DueDatePicker';
-import KeywordField from './KeywordField';
+import KeywordsInput from './KeywordsInput';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
@@ -25,7 +25,11 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
     if (!task) {
         return (
             <Paper className="data-task-form">
-                <p>No task available</p>
+                <Alert security="error">
+                    <AlertTitle>Missing data</AlertTitle>
+                    <p>No task available!</p>
+                    <p>Go back to <Link href="/" variant="body1" underline="hover">Task List</Link></p>
+                </Alert>
             </Paper>
         )
     }
@@ -49,7 +53,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                         />
                     </Grid>
                     <Grid item md={4}>
-                        <DueDatePicker value={task.dueDate} onChange={handleDueDate}/>
+                        <DueDatePicker value={task.dueDate ?? ''} onChange={handleDueDate}/>
                     </Grid>
                     <Grid item md={8}>
                         <TextField
@@ -64,7 +68,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                         />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{marginBottom: 'var(--gap-2)'}}>
-                        <KeywordField keywords={task.keywords} onChange={(key) => handleKeywords(key)}/>
+                        <KeywordsInput keywords={task.keywords ?? undefined} onChange={(key) => handleKeywords(key)}/>
                     </Grid>
                 </Grid>
 

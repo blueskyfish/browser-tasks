@@ -32,12 +32,17 @@ const columns: DataColumn[] = [
     {
         dataKey: 'title',
         label: 'Task',
-        width: '60%',
+        width: '40%',
     },
     {
         dataKey: 'done',
         label: 'Done',
         width: '5%'
+    },
+    {
+        dataKey: 'dueDate',
+        label: 'Due Date',
+        width: '20%',
     },
     {
         dataKey: 'keywords',
@@ -71,6 +76,11 @@ const taskData = (task: Task, col: keyof Task) => {
                     <Icon path={mdiCheckboxMarkedCircleOutline} size={1}/> :
                     <Icon path={mdiCheckboxBlankCircleOutline} size={1}/>
             );
+        case 'dueDate':
+            if (task.dueDate) {
+                return (<span className="task-due-date">{task.dueDate}</span>)
+            }
+            return (<span className="task-due-date">-</span>)
         case 'keywords':
             return (
                 <>
