@@ -16,8 +16,6 @@ export default function EditPage() {
     const task = taskMap[id] ?? null;
     const navigate = useNavigate();
 
-    console.log('> Edit task =>', task);
-
     const handleSubmit = (task: Task): void => {
         dispatch(createAction(DataActionKind.UpdateTask, task))
             .catch((reason) => console.error(reason));
