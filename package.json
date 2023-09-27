@@ -32,6 +32,11 @@
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7"
   },
+  "overrides": {
+    "react-scripts": {
+      "@svgr/webpack": "8.1.0"
+    }
+  },
   "scripts": {
     "start": "BROWSER=none PORT=6080 react-scripts start",
     "build": "BUILD_PATH='./docs' react-scripts build",
