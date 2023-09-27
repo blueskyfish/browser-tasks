@@ -11,6 +11,12 @@
     position: relative;
 }
 
+.data-task-detail .button-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .data-fab {
     margin: 0 !important;
     top: auto;

@@ -1,0 +1,11 @@
+
+.done-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: var(--gap-2);
+}
+
+.done-label .label {
+    padding-left: var(--gap-1);
+}

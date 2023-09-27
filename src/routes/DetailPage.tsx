@@ -1,11 +1,12 @@
-import { mdiAlertCircleOutline } from '@mdi/js';
+import { mdiFileDocumentOutline } from '@mdi/js';
 import { LoaderFunctionArgs } from '@remix-run/router/utils';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import DataDetail from '../components/DataDetail';
+import DataDetail, { DetailAction } from '../components/DataDetail';
 import Header from '../components/Header';
-import { getTaskStatusIcon } from '../components/TaskStatusIcon';
+import SidebarContext from '../context/sidebar.context';
 import DataContext from '../store/DataContext';
+import { createAction, DataActionKind } from '../store/DataReducer';
 import { Task } from '../store/TaskModel';
 
 export type DetailLoaderResponse = {
@@ -13,24 +14,36 @@ export type DetailLoaderResponse = {
 }
 
 export function detailLoader({params}: LoaderFunctionArgs): DetailLoaderResponse {
-    return { id: params.id ?? '' };
+    return {id: params.id ?? ''};
 }
 
 export default function DetailPage() {
-    const { getState } = useContext(DataContext);
-    const { taskMap } = getState();
-    const { id } = useLoaderData() as DetailLoaderResponse;
+    const {getState, dispatch} = useContext(DataContext);
+    const {taskMap} = getState();
+    const {id} = useLoaderData() as DetailLoaderResponse;
     const task = taskMap[id] ?? null;
     const navigate = useNavigate();
+    const {setSideMenu} = useContext(SidebarContext);
 
-    const handleTask = (task: Task): void => {
-        navigate(`/task/${task.id}/edit`);
+    useEffect(() => {
+        setSideMenu('detail');
+    }, [setSideMenu]);
+
+    const handleTask = (action: DetailAction, task: Task): void => {
+        switch (action) {
+            case 'edit':
+                navigate(`/task/${task.id}/edit`);
+                break;
+            case 'done':
+                dispatch(createAction(DataActionKind.UpdateTask, task)).catch((reason) => console.error(reason));
+                break;
+        }
     };
 
     return (
         <>
-            <Header title="Detail" icon={getTaskStatusIcon(task?.status ?? mdiAlertCircleOutline)}/>
+            <Header title="Detail" icon={mdiFileDocumentOutline}/>
             <DataDetail task={task} onTask={handleTask}/>
         </>
-    )
+    );
 }

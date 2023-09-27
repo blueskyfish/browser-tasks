@@ -6,7 +6,7 @@ export enum DataActionKind {
     LoadTaskList = 'load',
     UpdateTaskList = 'updateTaskList',
     AddTask = 'addTask',
-    UpdateTask = 'updateTask'
+    UpdateTask = 'updateTask',
 }
 
 export interface DataAction<Data> {
