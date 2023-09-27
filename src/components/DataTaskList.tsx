@@ -1,11 +1,10 @@
-import { mdiCheckboxBlankCircleOutline, mdiCheckboxMarkedCircleOutline } from '@mdi/js';
-import Icon from '@mdi/react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 import { Task } from '../store/TaskModel';
+import './DataTaskList.css';
+import DoneLabel from './DoneLabel';
 import KeywordsLine from './KeywordsLine';
 import TaskStatusIcon from './TaskStatusIcon';
-import './DataTaskList.css';
 
 export type DataTaskListProps = {
     onTask: (task: Task) => void;
@@ -54,9 +53,7 @@ const taskData = (task: Task, col: keyof Task) => {
             return (<span className="task-title">{task.title}</span>);
         case 'done':
             return (
-                (task.done || false) ?
-                    <Icon path={mdiCheckboxMarkedCircleOutline} size={1}/> :
-                    <Icon path={mdiCheckboxBlankCircleOutline} size={1}/>
+                <DoneLabel isDone={task.done ?? false} tooltip={(task.done ?? false) ? 'Done' : 'Open'}/>
             );
         case 'dueDate':
             if (task.dueDate) {
