@@ -1,0 +1,14 @@
+
+.keyword-line.label {
+    margin-bottom: var(--gap-2);
+}
+
+.keyword-line .title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.keyword-line .chip-line {
+
+}

@@ -1,15 +1,10 @@
-import {
-    mdiCheckboxBlankCircleOutline,
-    mdiCheckboxMarkedCircleOutline,
-    mdiDotsSquare,
-    mdiSquareOutline,
-    mdiStarBoxOutline,
-    mdiStarOutline
-} from '@mdi/js';
+import { mdiCheckboxBlankCircleOutline, mdiCheckboxMarkedCircleOutline } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react';
-import { Task, TaskStatus } from '../store/TaskModel';
+import { Task } from '../store/TaskModel';
+import KeywordsLine from './KeywordsLine';
+import TaskStatusIcon from './TaskStatusIcon';
 import './DataTaskList.css';
 
 export type DataTaskListProps = {
@@ -51,23 +46,10 @@ const columns: DataColumn[] = [
     }
 ];
 
-const taskIcon = (status: TaskStatus) => {
-    switch (status) {
-        default:
-            return <Icon path={mdiDotsSquare} size={1} />
-        case 'normal':
-            return <Icon path={mdiSquareOutline} size={1}/>;
-        case 'important':
-            return <Icon path={mdiStarBoxOutline} size={1}/>;
-        case 'highly':
-            return <Icon path={mdiStarOutline} size={1}/>;
-    }
-};
-
 const taskData = (task: Task, col: keyof Task) => {
     switch (col) {
         case 'status':
-            return (<Tooltip title={task.status ?? 'No Status'}>{taskIcon(task.status)}</Tooltip>);
+            return (<TaskStatusIcon status={task.status} tooltip={task.status ?? 'No status'}/>);
         case 'title':
             return (<span className="task-title">{task.title}</span>);
         case 'done':
@@ -83,11 +65,7 @@ const taskData = (task: Task, col: keyof Task) => {
             return (<span className="task-due-date">-</span>)
         case 'keywords':
             return (
-                <>
-                    {task.keywords?.map((keyword, index) => (
-                        <Chip label={keyword} key={index} sx={{marginRight: '0.25rem'}}/>
-                    ))}
-                </>
+                <KeywordsLine keywords={task.keywords}/>
             );
     }
 };
