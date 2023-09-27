@@ -4,8 +4,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
+import { withUpdateTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
-import { createAction, DataActionKind } from '../store/DataReducer';
 import { Task } from '../store/TaskModel';
 import { DetailLoaderResponse } from './DetailPage';
 
@@ -23,8 +23,7 @@ export default function EditPage() {
     }, [setSideMenu]);
 
     const handleSubmit = (task: Task): void => {
-        dispatch(createAction(DataActionKind.UpdateTask, task))
-            .catch((reason) => console.error(reason));
+        dispatch(withUpdateTask(task));
         navigate(`/task/${task.id}`);
     };
 

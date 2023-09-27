@@ -20,7 +20,6 @@ export default function HomePage() {
     }, [setSideMenu]);
 
     const handleTask = (task: Task): void => {
-        console.log('Task =>', task);
         navigate(`/task/${task.id}`);
     };
 

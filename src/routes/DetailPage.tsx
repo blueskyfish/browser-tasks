@@ -5,8 +5,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataDetail, { DetailAction } from '../components/DataDetail';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
+import { withUpdateTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
-import { createAction, DataActionKind } from '../store/DataReducer';
 import { Task } from '../store/TaskModel';
 
 export type DetailLoaderResponse = {
@@ -35,7 +35,7 @@ export default function DetailPage() {
                 navigate(`/task/${task.id}/edit`);
                 break;
             case 'done':
-                dispatch(createAction(DataActionKind.UpdateTask, task)).catch((reason) => console.error(reason));
+                dispatch(withUpdateTask(task));
                 break;
         }
     };

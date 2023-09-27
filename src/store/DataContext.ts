@@ -1,9 +1,10 @@
 import { createContext } from 'react';
-import { DataAction, DataState, initialState } from './DataReducer';
+import { DataState, initialState } from './DataReducer';
+import { DataAction } from './DataAction';
 
 export type DataContextProps = {
     getState: () => DataState;
-    dispatch: (action: DataAction<any>) => Promise<void>;
+    dispatch: (action: DataAction<any>) => void;
 }
 
 const initialContext: DataContextProps = {
