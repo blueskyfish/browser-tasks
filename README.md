@@ -3,7 +3,7 @@
 
 > Learning React
 > 
-> <https://blueskyfish.github.io/browser-tasks/indexhtml>
+> <https://blueskyfish.github.io/browser-tasks/>
 
 
 ## Screenshots
