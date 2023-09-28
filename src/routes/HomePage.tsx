@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import DataTaskList from '../components/DataTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
+import { ResponsiveContext } from '../reponsive/ResponsiveContext';
 import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
 import './HomePage.css';
@@ -11,6 +12,7 @@ import './HomePage.css';
 export default function HomePage() {
     const { setSideMenu } = useContext(SidebarContext);
     const { getState } = useContext(DataContext);
+    const { size } = useContext(ResponsiveContext);
     const { taskMap } = getState();
     const taskList = Object.values(taskMap);
     const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function HomePage() {
     return (
         <>
             <Header title={"Home"} icon={mdiHomeOutline}/>
-            <DataTaskList taskList={taskList} onTask={handleTask}/>
+            <DataTaskList taskList={taskList} size={size} onTask={handleTask}/>
         </>
 
     );
