@@ -25,6 +25,9 @@ body {
   --font-size-header: 1.2rem;
 
   --width-sidebar: 18rem;
+  --width-lg-sidebar: 18rem;
+  --width-md-sidebar: 10rem;
+  --width-sm-sidebar: 3.5rem;
 
   --gap-0: 0.25rem;
   --gap-1: 0.5rem;

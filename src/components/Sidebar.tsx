@@ -3,40 +3,46 @@ import Icon from '@mdi/react';
 import { Avatar, Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material';
 import { useContext } from 'react';
 import SidebarContext, { SideMenu } from '../context/sidebar.context';
+import { ResponsiveSize } from '../reponsive/ResponsiveModel';
 import avatar from './avatar.jpg';
 import './Sidebar.css';
 import Version from './Version';
 
 export type SidebarProps = {
+    size: ResponsiveSize;
     onNavigate: (to: string) => void;
 }
 
-export default function Sidebar({onNavigate}: SidebarProps) {
-    const { sideMenu } = useContext(SidebarContext);
+export default function Sidebar({size, onNavigate}: SidebarProps) {
+    const {sideMenu} = useContext(SidebarContext);
     const isSelected = (name: SideMenu): boolean => name === sideMenu;
 
+    const showText = size !== ResponsiveSize.sm && size !== ResponsiveSize.xs;
+    const avatarSize = showText ? '96px' : '36px';
+    const margin = showText ? '1rem auto 0.75rem' : '1rem auto 0.25rem';
     return (
-        <aside className={'sidebar'}>
-            <Avatar alt={"Browser Tasks"} src={avatar} sx={{ width: '96px', height: '96px', margin: '1rem auto 0.75rem'}} />
+        <aside className={`sidebar ${size}`}>
+            <Avatar alt={'Browser Tasks'} src={avatar}
+                    sx={{width: avatarSize, height: avatarSize, margin}}/>
             <MenuList>
-                <MenuItem key={'home'} onClick={() => onNavigate("/")} selected={isSelected('home')}>
+                <MenuItem key={'home'} onClick={() => onNavigate('/')} selected={isSelected('home')}>
                     <ListItemIcon>
                         <Icon path={mdiHomeOutline} size={1}/>
                     </ListItemIcon>
-                    <ListItemText>Home</ListItemText>
+                    {showText && (<ListItemText>Home</ListItemText>)}
                 </MenuItem>
                 <MenuItem key={'new'} onClick={() => onNavigate('/new')} selected={isSelected('new')}>
                     <ListItemIcon>
                         <Icon path={mdiFileDocumentPlusOutline} size={1}/>
                     </ListItemIcon>
-                    <ListItemText>New Task</ListItemText>
+                    {showText && (<ListItemText>New Task</ListItemText>)}
                 </MenuItem>
-                <Divider />
+                <Divider/>
                 <MenuItem key={'help'} onClick={() => onNavigate('/help')} selected={isSelected('help')}>
                     <ListItemIcon>
-                        <Icon path={mdiLightbulbOnOutline} size={1} />
+                        <Icon path={mdiLightbulbOnOutline} size={1}/>
                     </ListItemIcon>
-                    <ListItemText>Help</ListItemText>
+                    {showText && (<ListItemText>Help</ListItemText>)}
                 </MenuItem>
             </MenuList>
             <Version/>
