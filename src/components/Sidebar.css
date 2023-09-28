@@ -5,4 +5,5 @@
     flex: 0 0 auto;
     width: var(--width-sidebar);
     padding: 0 var(--gap-1);
+    position: relative;
 }

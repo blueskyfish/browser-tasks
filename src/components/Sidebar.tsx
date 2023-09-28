@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import SidebarContext, { SideMenu } from '../context/sidebar.context';
 import avatar from './avatar.jpg';
 import './Sidebar.css';
+import Version from './Version';
 
 export type SidebarProps = {
     onNavigate: (to: string) => void;
@@ -38,6 +39,7 @@ export default function Sidebar({onNavigate}: SidebarProps) {
                     <ListItemText>Help</ListItemText>
                 </MenuItem>
             </MenuList>
+            <Version/>
         </aside>
     );
 }
