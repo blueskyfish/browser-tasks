@@ -3,6 +3,17 @@
     background: var(--color-sidebar-bg);
     color: var(--color-sidebar-txt);
     flex: 0 0 auto;
-    width: var(--width-sidebar);
+    width: var(--width-sm-sidebar);
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar.lg {
+    width: var(--width-lg-sidebar);
+}
+
+.sidebar.md {
+    width: var(--width-md-sidebar);
     padding: 0 var(--gap-1);
 }

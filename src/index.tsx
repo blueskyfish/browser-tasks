@@ -14,7 +14,7 @@ import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
 import NewTask, { newLoader } from './routes/NewTask';
-import Root from './routes/Root';
+import RootPage from './routes/RootPage';
 import DataProvider from './store/DataProvider';
 
 const root = ReactDOM.createRoot(
@@ -24,7 +24,7 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Root/>,
+        element: <RootPage/>,
         children: [
             {
                 element: <HomePage/>,
