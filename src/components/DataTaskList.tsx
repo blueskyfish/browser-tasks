@@ -1,5 +1,6 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react';
+import { getOtherSize, ResponsiveSize } from '../reponsive/ResponsiveModel';
 import { Task } from '../store/TaskModel';
 import './DataTaskList.css';
 import DoneLabel from './DoneLabel';
@@ -9,6 +10,7 @@ import TaskStatusIcon from './TaskStatusIcon';
 export type DataTaskListProps = {
     onTask: (task: Task) => void;
     taskList: Task[];
+    size: ResponsiveSize;
 }
 
 interface DataColumn {
@@ -45,7 +47,7 @@ const columns: DataColumn[] = [
     }
 ];
 
-const taskData = (task: Task, col: keyof Task) => {
+const taskData = (task: Task, col: keyof Task, size: ResponsiveSize) => {
     switch (col) {
         case 'status':
             return (<TaskStatusIcon status={task.status} tooltip={task.status ?? 'No status'}/>);
@@ -62,17 +64,18 @@ const taskData = (task: Task, col: keyof Task) => {
             return (<span className="task-due-date">-</span>)
         case 'keywords':
             return (
-                <KeywordsLine keywords={task.keywords}/>
+                <KeywordsLine size={size} keywords={task.keywords}/>
             );
     }
 };
 
 
-export default function DataTaskList({taskList, onTask}: DataTaskListProps) {
+export default function DataTaskList({size, taskList, onTask}: DataTaskListProps) {
+    const tableSize= getOtherSize(size);
     return (
         <Paper className="data-task-list">
             <TableContainer>
-                <Table stickyHeader>
+                <Table size={tableSize} stickyHeader>
                     <TableHead>
                         <TableRow>
                             {columns.map((col) => (
@@ -99,7 +102,7 @@ export default function DataTaskList({taskList, onTask}: DataTaskListProps) {
                                         key={col.dataKey}
                                         align="left"
                                     >
-                                        {taskData(task, col.dataKey)}
+                                        {taskData(task, col.dataKey, size)}
                                     </TableCell>
                                 ))}
                             </TableRow>

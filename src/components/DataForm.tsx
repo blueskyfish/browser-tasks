@@ -1,5 +1,6 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { getOtherSize, ResponsiveSize } from '../reponsive/ResponsiveModel';
 import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
 import DueDatePicker from './DueDatePicker';
@@ -8,13 +9,15 @@ import MissingData from './MissingData';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
+    size: ResponsiveSize;
     task: Task;
     onSubmit: (task: Task) => void;
 }
-export default function DataForm({task, onSubmit}: DataFormProps) {
+export default function DataForm({size, task, onSubmit}: DataFormProps) {
     const { register, setValue, handleSubmit} = useForm<Task>({
         defaultValues: task ?? emptyTask(),
     });
+    const controlSize = getOtherSize(size);
     const handleKeywords = (newKeywords: string[]): void => {
         setValue('keywords', newKeywords);
     };
@@ -33,7 +36,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
             <form className="data-task-padding" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
-                        <StatusSelect label={"Task Status"} value={task.status} register={register} helpText="Please set the task status"/>
+                        <StatusSelect size={size} label={"Task Status"} value={task.status} register={register} helpText="Please set the task status"/>
                     </Grid>
                     <Grid item xs={12} md={8}>
                         <TextField
@@ -41,6 +44,7 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                             id="task__title"
                             label="Task Title"
                             helperText="Task title is required"
+                            size={controlSize}
                             fullWidth
                             variant="outlined"
                             color="primary"
@@ -57,13 +61,14 @@ export default function DataForm({task, onSubmit}: DataFormProps) {
                             rows={4}
                             id="task__content"
                             defaultValue={task.content}
+                            size={controlSize}
                             fullWidth
                             variant="outlined"
                             {...register('content')}
                         />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{marginBottom: 'var(--gap-2)'}}>
-                        <KeywordsInput keywords={task.keywords ?? undefined} onChange={(key) => handleKeywords(key)}/>
+                        <KeywordsInput size={size} keywords={task.keywords ?? undefined} onChange={(key) => handleKeywords(key)}/>
                     </Grid>
                 </Grid>
 

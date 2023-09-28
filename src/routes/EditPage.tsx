@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
+import { ResponsiveContext } from '../reponsive/ResponsiveContext';
 import { withUpdateTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
@@ -12,6 +13,7 @@ import { DetailLoaderResponse } from './DetailPage';
 
 export default function EditPage() {
     const {getState, dispatch} = useContext(DataContext);
+    const { size } = useContext(ResponsiveContext);
     const {taskMap} = getState();
     const {id} = useLoaderData() as DetailLoaderResponse;
     const task = taskMap[id] ?? null;
@@ -30,7 +32,7 @@ export default function EditPage() {
     return (
         <>
             <Header title="Edit" icon={mdiFileEditOutline}/>
-            <DataForm task={task} onSubmit={handleSubmit}/>
+            <DataForm size={size} task={task} onSubmit={handleSubmit}/>
         </>
     );
 }
