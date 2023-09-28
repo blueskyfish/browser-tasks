@@ -1,0 +1,8 @@
+
+.version {
+    color: #ccc;
+    position: absolute;
+    left: var(--gap-2);
+    bottom: var(--gap-2);
+    right: var(--gap-2);
+}
