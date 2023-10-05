@@ -1,12 +1,10 @@
 import { Autocomplete, Chip, TextField } from '@mui/material';
-import { getOtherSize, ResponsiveSize } from '../reponsive/ResponsiveModel';
+import { getThemeDense, useResponsiveSize } from '../media-query/useResponsiveSize';
 
 /**
  * Properties for the component `KeywordField`
  */
 export type KeywordFieldProps = {
-    size: ResponsiveSize;
-
     /**
      * The list of existing keywords
      */
@@ -27,7 +25,8 @@ export type KeywordFieldProps = {
  * @param onChange The callback of change the kist of keywords
  * @constructor
  */
-export default function KeywordsInput({size, keywords, onChange}: KeywordFieldProps) {
+export default function KeywordsInput({keywords, onChange}: KeywordFieldProps) {
+    const size = useResponsiveSize();
     const handleChange = (newKeywords: string[]): void => {
         onChange(newKeywords);
     };
@@ -38,7 +37,7 @@ export default function KeywordsInput({size, keywords, onChange}: KeywordFieldPr
             id="task__keywords"
             options={keywords}
             freeSolo
-            size={getOtherSize(size)}
+            size={'medium'}
             defaultValue={keywords}
             renderTags={(value, getTagProps) => {
                 return (
@@ -53,7 +52,7 @@ export default function KeywordsInput({size, keywords, onChange}: KeywordFieldPr
                     {...params}
                     variant="outlined"
                     label="Task Keywords"
-                    size={getOtherSize(size)}
+                    size={getThemeDense(size)}
                 />
             )}
             onChange={(e, value) => handleChange(value)}

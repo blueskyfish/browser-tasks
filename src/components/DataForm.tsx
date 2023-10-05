@@ -1,6 +1,5 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { getOtherSize, ResponsiveSize } from '../reponsive/ResponsiveModel';
 import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
 import DueDatePicker from './DueDatePicker';
@@ -9,15 +8,14 @@ import MissingData from './MissingData';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
-    size: ResponsiveSize;
     task: Task;
     onSubmit: (task: Task) => void;
 }
-export default function DataForm({size, task, onSubmit}: DataFormProps) {
+export default function DataForm({task, onSubmit}: DataFormProps) {
     const { register, setValue, handleSubmit} = useForm<Task>({
         defaultValues: task ?? emptyTask(),
     });
-    const controlSize = getOtherSize(size);
+    const controlSize = 'medium';
     const handleKeywords = (newKeywords: string[]): void => {
         setValue('keywords', newKeywords);
     };
@@ -36,7 +34,7 @@ export default function DataForm({size, task, onSubmit}: DataFormProps) {
             <form className="data-task-padding" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
-                        <StatusSelect size={size} label={"Task Status"} value={task.status} register={register} helpText="Please set the task status"/>
+                        <StatusSelect label={"Task Status"} value={task.status} register={register} helpText="Please set the task status"/>
                     </Grid>
                     <Grid item xs={12} md={8}>
                         <TextField
@@ -68,7 +66,7 @@ export default function DataForm({size, task, onSubmit}: DataFormProps) {
                         />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{marginBottom: 'var(--gap-2)'}}>
-                        <KeywordsInput size={size} keywords={task.keywords ?? undefined} onChange={(key) => handleKeywords(key)}/>
+                        <KeywordsInput keywords={task.keywords ?? undefined} onChange={(key) => handleKeywords(key)}/>
                     </Grid>
                 </Grid>
 
