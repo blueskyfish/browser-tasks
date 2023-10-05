@@ -5,7 +5,6 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataDetail, { DetailAction } from '../components/DataDetail';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { ResponsiveContext } from '../reponsive/ResponsiveContext';
 import { withUpdateTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
@@ -20,7 +19,6 @@ export function detailLoader({params}: LoaderFunctionArgs): DetailLoaderResponse
 
 export default function DetailPage() {
     const {getState, dispatch} = useContext(DataContext);
-    const { size } = useContext(ResponsiveContext);
     const {taskMap} = getState();
     const {id} = useLoaderData() as DetailLoaderResponse;
     const task = taskMap[id] ?? null;
@@ -45,7 +43,7 @@ export default function DetailPage() {
     return (
         <>
             <Header title="Detail" icon={mdiFileDocumentOutline}/>
-            <DataDetail size={size} task={task} onTask={handleTask}/>
+            <DataDetail task={task} onTask={handleTask}/>
         </>
     );
 }

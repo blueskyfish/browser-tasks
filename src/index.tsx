@@ -2,68 +2,20 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import DetailPage, { detailLoader } from './routes/DetailPage';
-import EditPage from './routes/EditPage';
-import { HelpPage } from './routes/HelpPage';
-import HomePage from './routes/HomePage';
-import NewTask, { newLoader } from './routes/NewTask';
-import RootPage from './routes/RootPage';
-import DataProvider from './store/DataProvider';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <RootPage/>,
-        children: [
-            {
-                element: <HomePage/>,
-                index: true,
-            },
-            {
-                path: 'task/:id',
-                element: <DetailPage/>,
-                loader: detailLoader
-            },
-            {
-                path: 'task/:id/edit',
-                element: <EditPage/>,
-                loader: detailLoader,
-            },
-            {
-                path: 'new',
-                element: <NewTask/>,
-                loader: newLoader,
-            },
-            {
-                path: 'help',
-                element: <HelpPage/>
-            }
-        ]
-    },
-    {
-        path: '*',
-        element: <Navigate to={'/'} replace={true}/>
-    }
-]);
 
 root.render(
     <React.StrictMode>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DataProvider>
-                <RouterProvider router={router}/>
-            </DataProvider>
-        </LocalizationProvider>
+        <App/>
     </React.StrictMode>
 );
 

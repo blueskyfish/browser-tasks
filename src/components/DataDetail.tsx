@@ -1,7 +1,6 @@
 import { mdiFileEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Button, Fab, Paper } from '@mui/material';
-import { ResponsiveSize } from '../reponsive/ResponsiveModel';
 import { Task } from '../store/TaskModel';
 import ContentBox from './ContentBox';
 import './DataDetail.css';
@@ -15,11 +14,10 @@ import TitleBar from './TitleBar';
 export type DetailAction = 'edit' | 'done';
 
 export type DataDetailProps = {
-    size: ResponsiveSize;
     task: Task;
     onTask: (action: DetailAction, task: Task) => void;
 }
-export default function DataDetail({size, task, onTask}: DataDetailProps) {
+export default function DataDetail({task, onTask}: DataDetailProps) {
     const handleDone = (isDone: boolean): void => {
         onTask('done', {
             ...task,
@@ -37,7 +35,7 @@ export default function DataDetail({size, task, onTask}: DataDetailProps) {
             <div className="data-task-padding">
                 <TitleBar icon={getTaskStatusIcon(task.status)} title={task.title}/>
                 <ContentBox label="Task"  content={task.content}/>
-                <KeywordsLine size={size} keywords={task.keywords} title="Task Keywords"/>
+                <KeywordsLine keywords={task.keywords} title="Task Keywords"/>
                 <div className="button-bar">
                     <DoneLabel isDone={task.done} label={task.done ? 'Done' : 'Open'}/>
                     <DoneButton isDone={task.done} setDone={handleDone}/>

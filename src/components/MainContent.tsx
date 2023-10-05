@@ -1,13 +1,13 @@
-import React, { JSX } from 'react';
+import React from 'react';
 import './MainContent.css';
-import { ResponsiveSize } from '../reponsive/ResponsiveModel';
+import { useResponsiveSize } from '../media-query/useResponsiveSize';
 
 export type MainContentProps = {
-    size: ResponsiveSize;
     children: React.ReactNode;
 }
 
-export default function MainContent({size, children}: MainContentProps) {
+export default function MainContent({children}: MainContentProps) {
+    const size = useResponsiveSize();
     return (
         <main className={`main-content ${size}`}>
             {children}

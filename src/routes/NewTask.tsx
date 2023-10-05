@@ -4,7 +4,6 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { ResponsiveContext } from '../reponsive/ResponsiveContext';
 import { withAddTask } from '../store/DataAction';
 import DataContext from '../store/DataContext';
 import { emptyTask, Task } from '../store/TaskModel';
@@ -20,7 +19,6 @@ export function newLoader() {
 export default function NewTask() {
     const {setSideMenu} = useContext(SidebarContext);
     const {dispatch} = useContext(DataContext);
-    const {size} = useContext(ResponsiveContext);
     const navigate = useNavigate();
     const {task} = useLoaderData() as newLoaderResponse;
     useEffect(() => {
@@ -35,7 +33,7 @@ export default function NewTask() {
     return (
         <>
             <Header title={'New Task'} icon={mdiFileDocumentPlusOutline}/>
-            <DataForm size={size} task={task} onSubmit={handleSubmit}/>
+            <DataForm task={task} onSubmit={handleSubmit}/>
         </>
     );
 }

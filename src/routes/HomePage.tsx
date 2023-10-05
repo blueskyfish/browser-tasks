@@ -5,8 +5,7 @@ import CardTaskList from '../components/CardTaskList';
 import DataTaskList from '../components/DataTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { ResponsiveContext } from '../reponsive/ResponsiveContext';
-import { ResponsiveSize } from '../reponsive/ResponsiveModel';
+import { ResponsiveSize, useResponsiveSize } from '../media-query/useResponsiveSize';
 import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
 import './HomePage.css';
@@ -14,8 +13,8 @@ import './HomePage.css';
 export default function HomePage() {
     const { setSideMenu } = useContext(SidebarContext);
     const { getState } = useContext(DataContext);
-    const { size } = useContext(ResponsiveContext);
     const { taskMap } = getState();
+    const size = useResponsiveSize();
     const taskList = Object.values(taskMap);
     const navigate = useNavigate();
 
@@ -27,13 +26,13 @@ export default function HomePage() {
         navigate(`/task/${task.id}`);
     };
 
-    const isSmallSize = size === ResponsiveSize.xs || size === ResponsiveSize.md;
+    const isSmallSize = size === ResponsiveSize.xs
 
     return (
         <>
             <Header title={"Home"} icon={mdiHomeOutline}/>
-            {isSmallSize && (<DataTaskList taskList={taskList} size={size} onTask={handleTask}/>)}
-            {!isSmallSize && (<CardTaskList taskList={taskList} onTask={handleTask}/>)}
+            {!isSmallSize && (<DataTaskList taskList={taskList} onTask={handleTask}/>)}
+            {isSmallSize && (<CardTaskList taskList={taskList} onTask={handleTask}/>)}
         </>
 
     );
