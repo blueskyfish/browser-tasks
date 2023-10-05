@@ -6,6 +6,7 @@ import SidebarContext, { SideMenu } from '../context/sidebar.context';
 import { ResponsiveSize } from '../reponsive/ResponsiveModel';
 import avatar from './avatar.jpg';
 import './Sidebar.css';
+import Version from './Version';
 
 export type SidebarProps = {
     size: ResponsiveSize;
@@ -44,6 +45,7 @@ export default function Sidebar({size, onNavigate}: SidebarProps) {
                     {showText && (<ListItemText>Help</ListItemText>)}
                 </MenuItem>
             </MenuList>
+            <Version/>
         </aside>
     );
 }

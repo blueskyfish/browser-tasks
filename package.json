@@ -34,7 +34,8 @@
   },
   "overrides": {
     "react-scripts": {
-      "@svgr/webpack": "8.1.0"
+      "@svgr/webpack": "8.1.0",
+      "postcss": "8.4.31"
     }
   },
   "scripts": {

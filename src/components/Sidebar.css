@@ -16,4 +16,5 @@
 .sidebar.md {
     width: var(--width-md-sidebar);
     padding: 0 var(--gap-1);
+    position: relative;
 }
