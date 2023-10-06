@@ -1,4 +1,4 @@
-import { mdiDotsSquare, mdiSquareOutline, mdiStarBoxOutline } from '@mdi/js';
+import { mdiDotsSquare, mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
 import React from 'react';
@@ -13,11 +13,11 @@ export type TaskIconProps = {
 export const getTaskStatusIcon = (status: TaskStatus): string => {
     switch (status) {
         case 'normal':
-            return mdiSquareOutline;
+            return mdiStarOutline;
         case 'important':
-            return mdiStarBoxOutline;
+            return mdiStarHalfFull;
         case 'highly':
-            return mdiStarBoxOutline;
+            return mdiStar;
         default:
             return mdiDotsSquare;
     }
