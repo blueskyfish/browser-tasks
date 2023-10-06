@@ -1,7 +1,7 @@
 import { mdiFileEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Button, Fab, Paper } from '@mui/material';
-import { Task } from '../store/TaskModel';
+import { emptyTask, Task } from '../store/TaskModel';
 import ContentBox from './ContentBox';
 import './DataDetail.css';
 import DoneButton from './DoneButton';
@@ -14,13 +14,13 @@ import TitleBar from './TitleBar';
 export type DetailAction = 'edit' | 'done';
 
 export type DataDetailProps = {
-    task: Task;
+    task?: Task;
     onTask: (action: DetailAction, task: Task) => void;
 }
 export default function DataDetail({task, onTask}: DataDetailProps) {
     const handleDone = (isDone: boolean): void => {
         onTask('done', {
-            ...task,
+            ...task ?? emptyTask(),
             done: isDone,
         });
     };

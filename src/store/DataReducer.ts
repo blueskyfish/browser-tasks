@@ -1,24 +1,22 @@
 import { produce } from 'immer';
-import { DataAction, DataActionKind, withInitTaskList, withUpdateTaskList } from './DataAction';
+import { DataAction, DataActionKind, withFilterKeyword, withInitTaskList, withUpdateTaskList } from './DataAction';
 import { loadTaskList, saveTaskList } from './DataStorage';
 import { Task } from './TaskModel';
 
 export interface DataState {
-    taskMap: Record<string, Task>;
+    tasks: Task[];
+    filter: string;
 }
 
 export const initialState: DataState = {
-    taskMap: {},
+    tasks: [],
+    filter: '',
 };
 
-const updateStateTaskList = (state: DataState, list: Task[]): DataState => {
-    const taskMap: Record<string, Task> = {};
-    list.forEach((t: Task) => {
-        taskMap[t.id] = t;
-    })
+const updateStateTaskList = (state: DataState, tasks: Task[]): DataState => {
     return {
         ...state,
-        taskMap
+        tasks
     };
 }
 
@@ -31,6 +29,13 @@ export function dataReducer(state: DataState, action: DataAction<any>): DataStat
             // save the changed task list
             saveTaskList(payload);
             return produce(state, (baseState) => updateStateTaskList(baseState, payload));
+        case DataActionKind.FilterKeyword:
+            return produce(state, (baseState) => {
+                return {
+                    ...baseState,
+                    filter: payload,
+                };
+            })
         default:
             return state;
     }
@@ -54,6 +59,9 @@ export function middleware(dispatch: any) {
             case DataActionKind.UpdateTask:
                 const updatedList = replaceTaskList(loadTaskList(), payload);
                 dispatch(withUpdateTaskList(updatedList));
+                break;
+            case DataActionKind.FilterKeyword:
+                dispatch(withFilterKeyword(payload));
                 break;
         }
     }

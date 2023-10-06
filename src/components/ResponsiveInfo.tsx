@@ -1,9 +1,13 @@
-import { useResponsiveSize } from '../media-query/useResponsiveSize';
+import { ResponsiveSize, useResponsiveSize } from '../media-query/useResponsiveSize';
 import './ResponsiveInfo.css';
 
-export default function ResponsiveInfo() {
-    const size = useResponsiveSize();
+export type ResponseInfoProps = {
+    size: ResponsiveSize;
+}
+export default function ResponsiveInfo({size}: ResponseInfoProps) {
     return (
-        <p className="small-info">Responsive <b>{size}</b></p>
+        <p className={`responsive-info ${size}`}>
+            <span className="label">Responsive </span><b className="size">{size}</b>
+        </p>
     );
 }

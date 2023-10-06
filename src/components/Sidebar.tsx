@@ -3,10 +3,11 @@ import Icon from '@mdi/react';
 import { Avatar, Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material';
 import { useContext } from 'react';
 import SidebarContext, { SideMenu } from '../context/sidebar.context';
-import { getThemeDense, useResponsiveSize } from '../media-query/useResponsiveSize';
-import ResponsiveInfo from './ResponsiveInfo';
+import { isSmallResponse, useResponsiveSize } from '../media-query/useResponsiveSize';
 import avatar from './avatar.jpg';
+import ResponsiveInfo from './ResponsiveInfo';
 import './Sidebar.css';
+import SidebarFilter from './SidebarFilter';
 import Version from './Version';
 
 export type SidebarProps = {
@@ -18,7 +19,7 @@ export default function Sidebar({onNavigate}: SidebarProps) {
     const size = useResponsiveSize();
     const isSelected = (name: SideMenu): boolean => name === sideMenu;
 
-    const showText = getThemeDense(size) === 'medium';
+    const showText = !isSmallResponse(size);
     const avatarSize = showText ? '96px' : '36px';
     const margin = showText ? '1rem auto 0.75rem' : '1rem auto 0.25rem';
     return (
@@ -46,8 +47,9 @@ export default function Sidebar({onNavigate}: SidebarProps) {
                     {showText && (<ListItemText>Help</ListItemText>)}
                 </MenuItem>
             </MenuList>
-            <ResponsiveInfo/>
-            <Version/>
+            <SidebarFilter size={size} />
+            <ResponsiveInfo size={size}/>
+            <Version size={size}/>
         </aside>
     );
 }

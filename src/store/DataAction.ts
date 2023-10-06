@@ -25,6 +25,8 @@ export enum DataActionKind {
      * Update an existing task
      */
     UpdateTask = 'updateTask',
+
+    FilterKeyword = 'filterKeyword'
 }
 
 /**
@@ -55,6 +57,10 @@ export const withAddTask = (task: Task): DataAction<Task> => {
 export const withUpdateTask = (task: Task): DataAction<Task> => {
     return createAction(DataActionKind.UpdateTask, task);
 };
+
+export const withFilterKeyword = (keyword: string): DataAction<string> => {
+    return createAction(DataActionKind.FilterKeyword, keyword);
+}
 
 /**
  * Create a {@link DataAction}

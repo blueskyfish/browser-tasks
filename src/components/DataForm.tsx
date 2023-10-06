@@ -8,7 +8,7 @@ import MissingData from './MissingData';
 import StatusSelect from './StatusSelect';
 
 export type DataFormProps = {
-    task: Task;
+    task?: Task;
     onSubmit: (task: Task) => void;
 }
 export default function DataForm({task, onSubmit}: DataFormProps) {
