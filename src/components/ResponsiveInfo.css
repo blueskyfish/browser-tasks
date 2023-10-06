@@ -1,5 +1,10 @@
 
-.small-info {
+.responsive-info {
     font-size: 0.8rem;
     margin: 1rem 1rem;
+}
+
+.responsive-info.xs .label, .responsive-info.sm .label {
+    display: none;
+    visibility: hidden;
 }

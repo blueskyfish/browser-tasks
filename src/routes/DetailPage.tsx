@@ -18,10 +18,10 @@ export function detailLoader({params}: LoaderFunctionArgs): DetailLoaderResponse
 }
 
 export default function DetailPage() {
-    const {getState, dispatch} = useContext(DataContext);
-    const {taskMap} = getState();
+    const {getTaskList, dispatch} = useContext(DataContext);
+    const taskList = getTaskList();
     const {id} = useLoaderData() as DetailLoaderResponse;
-    const task = taskMap[id] ?? null;
+    const task = taskList.find((t: Task) => t.id === id);
     const navigate = useNavigate();
     const {setSideMenu} = useContext(SidebarContext);
 

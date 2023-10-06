@@ -10,15 +10,19 @@
 
 ### Home
 
-![Browser Tasks (Home)](screenshot-home.jpg)
+![Browser Tasks (iPad)](screenshot-ipad-home.png)
+
+![Browser Tasks (Mobile)](screenshot-mobile.png)
+
+![Browser Tasks (Mobile Filter)](screenshot-mobile-filter.png)
 
 ### Detail
 
-![Browser Tasks (Detail)](screenshot-detail.jpg)
+![Browser Tasks (iPad)](screenshot-ipad-detail.png)
 
 ### Edit
 
-![Browser Tasks (Edit)](screenshot-edit.jpg)
+![Browser Tasks (Edit)](screenshot-ipad-edit.png)
 
 
 ## License

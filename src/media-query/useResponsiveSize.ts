@@ -40,3 +40,11 @@ export function getThemeDense(size: ResponsiveSize): 'medium' | 'small' {
     }
     return 'medium';
 }
+
+export function isSmallResponse(size: ResponsiveSize): boolean {
+    return size === ResponsiveSize.xs || size === ResponsiveSize.sm;
+}
+
+export function isXSmallResponse(size: ResponsiveSize): boolean {
+    return size === ResponsiveSize.xs;
+}

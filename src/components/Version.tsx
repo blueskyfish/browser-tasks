@@ -1,6 +1,11 @@
 import pkg from '../../package.json';
 import './Version.css';
+import { ResponsiveSize } from '../media-query/useResponsiveSize';
 
-export default function Version() {
-    return (<p className="version">{pkg.version}</p>)
+export type VersionProps = {
+    size: ResponsiveSize;
+};
+
+export default function Version({ size }: VersionProps) {
+    return (<p className={`version ${size}`}>{pkg.version}</p>)
 }

@@ -19,6 +19,9 @@ body {
   --color-sidebar-bg: rgba(0, 0, 0, 6%);
   --color-sidebar-txt: #444;
 
+  --color-divider: rgba(0, 0, 0, 12%);
+  --color-divider-hover: rgba(0, 0, 0, 16%);
+
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
 
