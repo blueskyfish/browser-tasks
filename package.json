@@ -1,6 +1,6 @@
 {
   "name": "browser-tasks",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://blueskyfish.github.id/browser-tasks",
   "private": true,
   "dependencies": {
