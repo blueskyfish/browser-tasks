@@ -3,12 +3,13 @@ import { createTheme } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DetailPage, { detailLoader } from './routes/DetailPage';
 import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
 import NewTask, { newLoader } from './routes/NewTask';
+import NotFoundPage from './routes/NotFoundPage';
 import RootPage from './routes/RootPage';
 import DataProvider from './store/DataProvider';
 
@@ -65,9 +66,9 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <Navigate to={'/'} replace={true}/>
+        element: <NotFoundPage/>
     }
-]);
+], { basename: '/browser-tasks'});
 // endregion
 
 
