@@ -1,4 +1,4 @@
-import { mdiDeleteOutline, mdiFilterOutline, mdiFilterPlusOutline } from '@mdi/js';
+import { mdiDeleteOutline, mdiFilterPlusOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import {
     Button,
@@ -9,7 +9,6 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemIcon,
     ListItemText
 } from '@mui/material';
 import { useContext, useState } from 'react';
