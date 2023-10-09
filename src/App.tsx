@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material';
+import { LinkProps, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -12,8 +12,20 @@ import NewTask, { newLoader } from './routes/NewTask';
 import NotFoundPage from './routes/NotFoundPage';
 import RootPage from './routes/RootPage';
 import DataProvider from './store/DataProvider';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 // region Material Theme
+//
+// MUI Link to Router Link => https://mui.com/material-ui/guides/routing/
+const LinkBehavior = React.forwardRef<
+    HTMLAnchorElement,
+    Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>((props, ref) => {
+    const { href, ...other } = props;
+    // Map href (Material UI) -> to (react-router)
+    return <RouterLink ref={ref} to={href} {...other} />;
+});
+
 export const theme = createTheme({
     palette: {
         mode: 'light',
@@ -28,6 +40,18 @@ export const theme = createTheme({
         },
         warning: {
             main: '#e57373',
+        },
+    },
+    components: {
+        MuiLink: {
+            defaultProps: {
+                component: LinkBehavior,
+            } as LinkProps,
+        },
+        MuiButtonBase: {
+            defaultProps: {
+                LinkComponent: LinkBehavior,
+            },
         },
     },
 });
