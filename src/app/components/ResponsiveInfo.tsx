@@ -1,4 +1,4 @@
-import { ResponsiveSize, useResponsiveSize } from '../media-query/useResponsiveSize';
+import { ResponsiveSize } from '../media-query/useResponsiveSize';
 import './ResponsiveInfo.css';
 
 export type ResponseInfoProps = {

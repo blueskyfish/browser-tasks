@@ -24,8 +24,11 @@ export default function Sidebar({onNavigate}: SidebarProps) {
     const margin = showText ? '1rem auto 0.75rem' : '1rem auto 0.25rem';
     return (
         <aside className={`sidebar ${size}`}>
-            <Avatar alt={'Browser Tasks'} src={avatar}
-                    sx={{width: avatarSize, height: avatarSize, margin}}/>
+            <Avatar
+                alt={'Browser Tasks'}
+                src={avatar}
+                sx={{width: avatarSize, height: avatarSize, margin}}
+            />
             <MenuList>
                 <MenuItem key={'home'} onClick={() => onNavigate('/')} selected={isSelected('home')}>
                     <ListItemIcon>

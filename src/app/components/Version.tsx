@@ -1,4 +1,4 @@
-import pkg from '../../package.json';
+import pkg from '../../../package.json';
 import './Version.css';
 import { ResponsiveSize } from '../media-query/useResponsiveSize';
 

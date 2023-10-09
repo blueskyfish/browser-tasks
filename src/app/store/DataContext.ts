@@ -1,5 +1,4 @@
 import { createContext } from 'react';
-import { DataState, initialState } from './DataReducer';
 import { DataAction } from './DataAction';
 import { KeywordCount } from './DataSelector';
 import { Task } from './TaskModel';
