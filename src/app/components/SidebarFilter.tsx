@@ -11,12 +11,11 @@ import {
     ListItem,
     ListItemText
 } from '@mui/material';
-import { useContext, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../features/hooks';
 import { selectTasks } from '../../features/tasks/taskSelectors';
+import { updateSelected } from '../../features/tasks/taskSlice';
 import { isSmallResponse, ResponsiveSize } from '../media-query/useResponsiveSize';
-import { withFilterKeyword } from '../store/DataAction';
-import DataContext from '../store/DataContext';
 import KeywordBubbles from './KeywordBubbles';
 import './SidebarFilter.css';
 
@@ -26,13 +25,13 @@ export type SidebarFilterProps = {
 
 export default function SidebarFilter ({size}: SidebarFilterProps) {
     const [open, setOpen] = useState(false);
-    const { dispatch } = useContext(DataContext);
+    const dispatch = useAppDispatch();
 
-    const {keywords, selected} = useSelector(selectTasks);
+    const {keywords, selected} = useAppSelector(selectTasks);
 
     const handleFilter = (keyword: string): void => {
         setOpen(false);
-        dispatch(withFilterKeyword(keyword));
+        dispatch(updateSelected(keyword));
     };
 
     let keyword = selected;

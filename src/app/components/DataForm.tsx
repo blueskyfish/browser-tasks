@@ -1,7 +1,8 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { emptyTask, Task } from '../store/TaskModel';
 import './DataForm.css';
+import { Task } from '../../features/tasks/task';
+import { emptyTask } from '../../features/tasks/taskUtils';
 import DueDatePicker from './DueDatePicker';
 import KeywordsInput from './KeywordsInput';
 import MissingData from './MissingData';

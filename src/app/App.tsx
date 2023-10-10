@@ -3,14 +3,14 @@ import { createTheme } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import {
     createBrowserRouter,
     Link as RouterLink,
     LinkProps as RouterLinkProps,
     RouterProvider
 } from 'react-router-dom';
-import { loading } from '../features/tasks/taskThunks';
+import { useAppDispatch } from '../features/hooks';
+import { loadTaskList } from '../features/tasks/taskThunks';
 import DetailPage, { detailLoader } from './routes/DetailPage';
 import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
@@ -18,7 +18,6 @@ import HomePage from './routes/HomePage';
 import NewTask, { newLoader } from './routes/NewTask';
 import NotFoundPage from './routes/NotFoundPage';
 import RootPage from './routes/RootPage';
-import DataProvider from './store/DataProvider';
 
 // region Material Theme
 //
@@ -103,18 +102,16 @@ const router = createBrowserRouter([
 
 
 export default function App() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        // @ts-ignore
-        setTimeout(() => dispatch(loading()), 1000);
+        // @ ts-ignore
+        dispatch(loadTaskList());
     }, [dispatch]);
     return (
         <ThemeProvider theme={theme}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DataProvider>
-                    <RouterProvider router={router}/>
-                </DataProvider>
+                <RouterProvider router={router}/>
             </LocalizationProvider>
         </ThemeProvider>
     );

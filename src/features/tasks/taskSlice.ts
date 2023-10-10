@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { KeywordCounter, Task } from './task';
-import { keywordCounter, tasksData } from './taskData';
+import { initTaskListReduce, updateSelectedReduce, updateTaskListReduce } from './taskReduces';
 
 export type TasksState = {
     taskList: Task[],
@@ -8,29 +8,34 @@ export type TasksState = {
     selected: string;
 };
 
+const initialState: TasksState = {
+    taskList: [],
+    keywords: {},
+    selected: '',
+}
+
 export const taskSlice = createSlice({
     name: 'tasks',
-    initialState: {taskList: tasksData, keywords: keywordCounter, selected: ''},
+    initialState: initialState,
     reducers: {
         initTaskList: (state, action: PayloadAction<Task[]>) => {
-            return {
-                ...state,
-                taskList: action.payload,
-            }
+            return initTaskListReduce(state, action.payload);
         },
         updateTaskList: (state, action: PayloadAction<Task[]>) => {
-            return {
-                ...state,
-                taskList: action.payload,
-            }
+            return updateTaskListReduce(state, action.payload);
         },
+        updateSelected: (state, action: PayloadAction<string>) => {
+            return updateSelectedReduce(state, action.payload);
+        }
     },
 });
 
 
 export default taskSlice.reducer;
+
 export const {
     updateTaskList,
-    initTaskList
+    initTaskList,
+    updateSelected,
 } = taskSlice.actions;
 

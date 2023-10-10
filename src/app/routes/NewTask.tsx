@@ -1,12 +1,13 @@
 import { mdiFileDocumentPlusOutline } from '@mdi/js';
 import { useContext, useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../features/hooks';
+import { Task } from '../../features/tasks/task';
+import { createTaskItem } from '../../features/tasks/taskThunks';
+import { emptyTask } from '../../features/tasks/taskUtils';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { withAddTask } from '../store/DataAction';
-import DataContext from '../store/DataContext';
-import { emptyTask, Task } from '../store/TaskModel';
 
 export type newLoaderResponse = {
     task: Task;
@@ -18,7 +19,7 @@ export function newLoader() {
 
 export default function NewTask() {
     const {setSideMenu} = useContext(SidebarContext);
-    const {dispatch} = useContext(DataContext);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {task} = useLoaderData() as newLoaderResponse;
     useEffect(() => {
@@ -26,7 +27,7 @@ export default function NewTask() {
     }, [setSideMenu]);
 
     const handleSubmit = (task: Task): void => {
-        dispatch(withAddTask(task));
+        dispatch(createTaskItem(task));
         navigate('/');
     };
 

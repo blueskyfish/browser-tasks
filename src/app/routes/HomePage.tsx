@@ -2,17 +2,17 @@ import { mdiHomeOutline } from '@mdi/js';
 import { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Task } from '../../features/tasks/task';
 import { selectFilteredTaskList } from '../../features/tasks/taskSelectors';
 import CardTaskList from '../components/CardTaskList';
 import DataTaskList from '../components/DataTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
 import { ResponsiveSize, useResponsiveSize } from '../media-query/useResponsiveSize';
-import { Task } from '../store/TaskModel';
 import './HomePage.css';
 
 export default function HomePage() {
-    const { setSideMenu } = useContext(SidebarContext);
+    const {setSideMenu} = useContext(SidebarContext);
     const taskList = useSelector(selectFilteredTaskList);
     const size = useResponsiveSize();
     const navigate = useNavigate();
@@ -25,11 +25,11 @@ export default function HomePage() {
         navigate(`/task/${task.id}`);
     };
 
-    const isSmallSize = size === ResponsiveSize.xs
+    const isSmallSize = size === ResponsiveSize.xs;
 
     return (
         <>
-            <Header title={"Home"} icon={mdiHomeOutline}/>
+            <Header title={'Home'} icon={mdiHomeOutline}/>
             {!isSmallSize && (<DataTaskList taskList={taskList} onTask={handleTask}/>)}
             {isSmallSize && (<CardTaskList taskList={taskList} onTask={handleTask}/>)}
         </>

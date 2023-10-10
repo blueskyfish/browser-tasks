@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Task } from '../store/TaskModel';
+import { Task } from '../../features/tasks/task';
 import CardTaskItem from './CardTaskItem';
 
 export type CardTaskListProps = {

@@ -1,16 +1,16 @@
 import { mdiFileDocumentOutline } from '@mdi/js';
 import { LoaderFunctionArgs } from '@remix-run/router/utils';
 import { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../features/store';
+import { useAppDispatch } from '../../features/hooks';
+import { Task } from '../../features/tasks/task';
 import { selectTaskById } from '../../features/tasks/taskSelectors';
+import { saveTaskItem } from '../../features/tasks/taskThunks';
 import DataDetail, { DetailAction } from '../components/DataDetail';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { withUpdateTask } from '../store/DataAction';
-import DataContext from '../store/DataContext';
-import { Task } from '../store/TaskModel';
+
 
 export type DetailLoaderResponse = {
     id: string;
@@ -24,7 +24,7 @@ export default function DetailPage() {
     const {id} = useLoaderData() as DetailLoaderResponse;
     const task = useSelector(selectTaskById(id));
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch();
     const {setSideMenu} = useContext(SidebarContext);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function DetailPage() {
                 navigate(`/task/${task.id}/edit`);
                 break;
             case 'done':
-                dispatch(withUpdateTask(task));
+                dispatch(saveTaskItem(task));
                 break;
         }
     };
