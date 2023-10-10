@@ -4,6 +4,7 @@ import { Task } from './task';
 
 export const selectTasks = (state: RootState) => state.tasks;
 export const selectTaskList = (state: RootState) => state.tasks.taskList;
+export const selectKeywords = (state: RootState) => state.tasks.keywords;
 export const selectTaskSelected = (state: RootState) => state.tasks.selected;
 export const selectFilteredTaskList = createSelector(
     [selectTaskList, selectTaskSelected],

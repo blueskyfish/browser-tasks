@@ -1,7 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react';
+import { Task } from '../../features/tasks/task';
 import { getThemeDense, useResponsiveSize } from '../media-query/useResponsiveSize';
-import { Task } from '../store/TaskModel';
 import './DataTaskList.css';
 import DoneLabel from './DoneLabel';
 import KeywordsLine from './KeywordsLine';

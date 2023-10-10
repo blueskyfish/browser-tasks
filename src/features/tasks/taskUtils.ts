@@ -32,12 +32,12 @@ const jsonParse = <T>(text: string | null | undefined, defValue: T): T => {
     }
 }
 
-export function loadTaskList(): Task[] {
+export function loadTaskListFromLocalStorage(): Task[] {
     const text = localStorage.getItem(buildKey('list'));
     return jsonParse<Task[]>(text, []);
 }
 
-export function saveTaskList(list: Task[]): void {
+export function saveTaskListInLocalStorage(list: Task[]): void {
     const text = JSON.stringify(list);
     localStorage.setItem(buildKey('list'), text);
 }

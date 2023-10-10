@@ -1,7 +1,4 @@
-import { Action, applyMiddleware, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { buildThunks } from '@reduxjs/toolkit/dist/query/core/buildThunks';
-import thunk from 'redux-thunk';
-import { useDispatch } from 'react-redux';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import tasksReducer from './tasks/taskSlice';
 
 export const store = configureStore({
@@ -25,5 +22,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >;
-
-export const useAppDispatch: () => AppDispatch = useDispatch

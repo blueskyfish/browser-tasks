@@ -1,20 +1,20 @@
 import { mdiFileEditOutline } from '@mdi/js';
 import { useContext, useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../features/hooks';
+import { Task } from '../../features/tasks/task';
+import { selectTaskById } from '../../features/tasks/taskSelectors';
+import { saveTaskItem } from '../../features/tasks/taskThunks';
 import DataForm from '../components/DataForm';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import { withUpdateTask } from '../store/DataAction';
-import DataContext from '../store/DataContext';
-import { Task } from '../store/TaskModel';
 import { DetailLoaderResponse } from './DetailPage';
 
 
 export default function EditPage() {
-    const {getTaskList, dispatch} = useContext(DataContext);
-    const taskList = getTaskList();
     const {id} = useLoaderData() as DetailLoaderResponse;
-    const task = taskList.find((t: Task) => t.id === id);
+    const task = useAppSelector(selectTaskById(id));
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {setSideMenu} = useContext(SidebarContext);
 
@@ -23,7 +23,7 @@ export default function EditPage() {
     }, [setSideMenu]);
 
     const handleSubmit = (task: Task): void => {
-        dispatch(withUpdateTask(task));
+        dispatch(saveTaskItem(task));
         navigate(`/task/${task.id}`);
     };
 

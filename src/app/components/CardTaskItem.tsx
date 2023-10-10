@@ -1,7 +1,7 @@
 import { mdiFileEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
-import { Task } from '../store/TaskModel';
+import { Task } from '../../features/tasks/task';
 import ContentBox from './ContentBox';
 import { getTaskStatusIcon } from './TaskStatusIcon';
 

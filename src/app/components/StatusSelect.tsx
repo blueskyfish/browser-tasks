@@ -1,7 +1,7 @@
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import { UseFormRegister } from 'react-hook-form';
+import { Task, TaskStatus } from '../../features/tasks/task';
 import { getThemeDense, useResponsiveSize } from '../media-query/useResponsiveSize';
-import { Task, TaskStatus } from '../store/TaskModel';
 
 export type StatusSelectProps = {
     label: string;

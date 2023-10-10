@@ -2,7 +2,7 @@ import { mdiDotsSquare, mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
 import React from 'react';
-import { TaskStatus } from '../store/TaskModel';
+import { TaskStatus } from '../../features/tasks/task';
 
 export type TaskIconProps = {
     status: TaskStatus;
