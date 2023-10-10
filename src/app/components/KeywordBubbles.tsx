@@ -1,9 +1,9 @@
 import { Badge } from '@mui/material';
-import { KeywordCount } from '../store/DataSelector';
+import { KeywordCounter } from '../../features/tasks/task';
 import './KeywordBubbles.css';
 
 export type KeywordsListProps = {
-    counts: KeywordCount;
+    counts: KeywordCounter;
     onFilter: (keyword: string) => void;
 }
 

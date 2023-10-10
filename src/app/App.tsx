@@ -2,8 +2,15 @@ import { LinkProps, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+    createBrowserRouter,
+    Link as RouterLink,
+    LinkProps as RouterLinkProps,
+    RouterProvider
+} from 'react-router-dom';
+import { loading } from '../features/tasks/taskThunks';
 import DetailPage, { detailLoader } from './routes/DetailPage';
 import EditPage from './routes/EditPage';
 import { HelpPage } from './routes/HelpPage';
@@ -12,7 +19,6 @@ import NewTask, { newLoader } from './routes/NewTask';
 import NotFoundPage from './routes/NotFoundPage';
 import RootPage from './routes/RootPage';
 import DataProvider from './store/DataProvider';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 // region Material Theme
 //
@@ -21,7 +27,7 @@ const LinkBehavior = React.forwardRef<
     HTMLAnchorElement,
     Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
-    const { href, ...other } = props;
+    const {href, ...other} = props;
     // Map href (Material UI) -> to (react-router)
     return <RouterLink ref={ref} to={href} {...other} />;
 });
@@ -92,11 +98,17 @@ const router = createBrowserRouter([
         path: '*',
         element: <NotFoundPage/>
     }
-], { basename: '/browser-tasks'});
+], {basename: '/browser-tasks'});
 // endregion
 
 
 export default function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // @ts-ignore
+        setTimeout(() => dispatch(loading()), 1000);
+    }, [dispatch]);
     return (
         <ThemeProvider theme={theme}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
