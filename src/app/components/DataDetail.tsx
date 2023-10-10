@@ -1,7 +1,8 @@
 import { mdiFileEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Button, Fab, Paper } from '@mui/material';
-import { emptyTask, Task } from '../store/TaskModel';
+import { Task } from '../../features/tasks/task';
+import { emptyTask } from '../../features/tasks/taskUtils';
 import ContentBox from './ContentBox';
 import './DataDetail.css';
 import DoneButton from './DoneButton';

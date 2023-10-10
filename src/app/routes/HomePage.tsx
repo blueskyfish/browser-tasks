@@ -1,19 +1,19 @@
 import { mdiHomeOutline } from '@mdi/js';
 import { useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { selectFilteredTaskList } from '../../features/tasks/taskSelectors';
 import CardTaskList from '../components/CardTaskList';
 import DataTaskList from '../components/DataTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
 import { ResponsiveSize, useResponsiveSize } from '../media-query/useResponsiveSize';
-import DataContext from '../store/DataContext';
 import { Task } from '../store/TaskModel';
 import './HomePage.css';
 
 export default function HomePage() {
     const { setSideMenu } = useContext(SidebarContext);
-    const { getTaskList } = useContext(DataContext);
-    const taskList = getTaskList();
+    const taskList = useSelector(selectFilteredTaskList);
     const size = useResponsiveSize();
     const navigate = useNavigate();
 

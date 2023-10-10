@@ -12,6 +12,8 @@ import {
     ListItemText
 } from '@mui/material';
 import { useContext, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTasks } from '../../features/tasks/taskSelectors';
 import { isSmallResponse, ResponsiveSize } from '../media-query/useResponsiveSize';
 import { withFilterKeyword } from '../store/DataAction';
 import DataContext from '../store/DataContext';
@@ -24,14 +26,16 @@ export type SidebarFilterProps = {
 
 export default function SidebarFilter ({size}: SidebarFilterProps) {
     const [open, setOpen] = useState(false);
-    const { getKeywordCounts, getFilter, dispatch } = useContext(DataContext)
+    const { dispatch } = useContext(DataContext);
+
+    const {keywords, selected} = useSelector(selectTasks);
 
     const handleFilter = (keyword: string): void => {
         setOpen(false);
         dispatch(withFilterKeyword(keyword));
     };
 
-    let keyword = getFilter();
+    let keyword = selected;
     if (!keyword || keyword === '') {
         keyword = 'All';
     }
@@ -45,7 +49,7 @@ export default function SidebarFilter ({size}: SidebarFilterProps) {
                 <Dialog open={open} onClose={() => setOpen(false)}>
                     <DialogTitle>Keyword &quot;{keyword}&quot;</DialogTitle>
                     <DialogContent>
-                        <KeywordBubbles counts={getKeywordCounts()} onFilter={handleFilter}/>
+                        <KeywordBubbles counts={keywords} onFilter={handleFilter}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleFilter('')}>Clear</Button>
@@ -67,7 +71,7 @@ export default function SidebarFilter ({size}: SidebarFilterProps) {
                     <ListItemText>Keyword &quot;{keyword}&quot;</ListItemText>
                 </ListItem>
             </List>
-            <KeywordBubbles counts={getKeywordCounts()} onFilter={handleFilter}/>
+            <KeywordBubbles counts={keywords} onFilter={handleFilter}/>
         </>
     );
 }

@@ -1,7 +1,10 @@
 import { mdiFileDocumentOutline } from '@mdi/js';
 import { LoaderFunctionArgs } from '@remix-run/router/utils';
 import { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../../features/store';
+import { selectTaskById } from '../../features/tasks/taskSelectors';
 import DataDetail, { DetailAction } from '../components/DataDetail';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
@@ -18,11 +21,10 @@ export function detailLoader({params}: LoaderFunctionArgs): DetailLoaderResponse
 }
 
 export default function DetailPage() {
-    const {getTaskList, dispatch} = useContext(DataContext);
-    const taskList = getTaskList();
     const {id} = useLoaderData() as DetailLoaderResponse;
-    const task = taskList.find((t: Task) => t.id === id);
+    const task = useSelector(selectTaskById(id));
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const {setSideMenu} = useContext(SidebarContext);
 
     useEffect(() => {
