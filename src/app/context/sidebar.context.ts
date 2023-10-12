@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export type SideMenu = null | 'home' | 'new' | 'detail' | 'edit' | 'help';
+export type SideMenu = null | 'home' | 'new' | 'detail' | 'edit' | 'export' | 'help';
 
 export type SideMenuState = {
     sideMenu: SideMenu;

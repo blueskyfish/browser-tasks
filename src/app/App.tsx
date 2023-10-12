@@ -13,6 +13,7 @@ import { useAppDispatch } from '../features/hooks';
 import { loadTaskList } from '../features/tasks/taskThunks';
 import DetailPage, { detailLoader } from './routes/DetailPage';
 import EditPage from './routes/EditPage';
+import ExportPage from './routes/ExportPage';
 import { HelpPage } from './routes/HelpPage';
 import HomePage from './routes/HomePage';
 import NewTask, { newLoader } from './routes/NewTask';
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
                 path: 'new',
                 element: <NewTask/>,
                 loader: newLoader,
+            },
+            {
+                path: 'export',
+                element: <ExportPage/>
             },
             {
                 path: 'help',
