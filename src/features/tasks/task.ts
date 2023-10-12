@@ -1,6 +1,6 @@
 export type TaskStatus = 'normal' | 'important' | 'highly';
 
-export type Task = {
+export interface Task {
     id: string;
     title: string;
     content: string;

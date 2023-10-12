@@ -1,7 +1,6 @@
 import { mdiHomeOutline } from '@mdi/js';
 import { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Task } from '../../features/tasks/task';
 import { selectFilteredTaskList } from '../../features/tasks/taskSelectors';
 import CardTaskList from '../components/CardTaskList';

@@ -1,4 +1,4 @@
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const useNavigateEdit = () => {
     const navigation = useNavigate();
@@ -39,5 +39,12 @@ export const useNavigateHelp = () => {
     const navigate = useNavigate();
     return () => {
         navigate('/help');
+    };
+};
+
+export const useNavigateExport = () => {
+    const navigate = useNavigate();
+    return () => {
+        navigate('/export');
     };
 };
