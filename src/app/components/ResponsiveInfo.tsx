@@ -4,6 +4,7 @@ import './ResponsiveInfo.css';
 export type ResponseInfoProps = {
     size: ResponsiveSize;
 }
+
 export default function ResponsiveInfo({size}: ResponseInfoProps) {
     return (
         <p className={`responsive-info ${size}`}>

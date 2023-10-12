@@ -3,7 +3,7 @@ import { TasksState } from './taskSlice';
 
 const extractKeywordCounter = (list: Task[]): KeywordCounter => {
     const counter: KeywordCounter = {};
-    list.filter((task: Task) => {
+    list.forEach((task: Task) => {
         task.keywords.forEach((keyword: string) => {
             if (!counter[keyword]) {
                 counter[keyword] = 0;

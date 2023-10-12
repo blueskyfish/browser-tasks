@@ -3,6 +3,7 @@ import Icon from '@mdi/react';
 import { Button, Fab, Paper } from '@mui/material';
 import { Task } from '../../features/tasks/task';
 import { emptyTask } from '../../features/tasks/taskUtils';
+import { useNavigateHome } from '../hooks/navigate';
 import ContentBox from './ContentBox';
 import './DataDetail.css';
 import DoneButton from './DoneButton';
@@ -19,6 +20,7 @@ export type DataDetailProps = {
     onTask: (action: DetailAction, task: Task) => void;
 }
 export default function DataDetail({task, onTask}: DataDetailProps) {
+    const navHome = useNavigateHome();
     const handleDone = (isDone: boolean): void => {
         onTask('done', {
             ...task ?? emptyTask(),
@@ -40,7 +42,7 @@ export default function DataDetail({task, onTask}: DataDetailProps) {
                 <div className="button-bar">
                     <DoneLabel isDone={task.done} label={task.done ? 'Done' : 'Open'}/>
                     <DoneButton isDone={task.done} setDone={handleDone}/>
-                    <Button href="/" variant="outlined" sx={{marginLeft: 'var(--gap-2)'}}>Task List</Button>
+                    <Button onClick={() => navHome()} variant="outlined" sx={{marginLeft: 'var(--gap-2)'}}>Task List</Button>
                 </div>
                 <Fab color="secondary" size="small" className="data-fab" onClick={() => onTask('edit', task)}>
                     <Icon path={mdiFileEditOutline} size={1}/>
