@@ -73,12 +73,12 @@ const router = createBrowserRouter([
                 index: true,
             },
             {
-                path: 'task/:id',
+                path: 'detail/:id',
                 element: <DetailPage/>,
                 loader: detailLoader
             },
             {
-                path: 'task/:id/edit',
+                path: 'edit/:id',
                 element: <EditPage/>,
                 loader: detailLoader,
             },

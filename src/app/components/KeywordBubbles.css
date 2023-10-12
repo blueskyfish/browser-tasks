@@ -5,6 +5,7 @@
 
 .keyword-bubbles .keyword-bubble {
     height: 2rem;
+    cursor: pointer;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
@@ -17,4 +18,11 @@
 
 .keyword-bubbles .keyword-bubble:hover {
     background: var(--color-divider-hover);
+}
+
+.keyword-bubbles .keyword-bubble.active {
+    background: var(--color-selected);
+}
+.keyword-bubbles .keyword-bubble.active:hover {
+    background: var(--color-selected-hover);
 }

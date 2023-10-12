@@ -22,6 +22,9 @@ body {
   --color-divider: rgba(0, 0, 0, 12%);
   --color-divider-hover: rgba(0, 0, 0, 16%);
 
+  --color-selected: rgba(23, 105, 170, 50%);
+  --color-selected-hover: rgba(23, 105, 170, 80%);
+
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
 

@@ -7,9 +7,11 @@ import {
     DialogContent,
     DialogTitle,
     IconButton,
-    List,
-    ListItem,
-    ListItemText
+    ListItemIcon,
+    ListItemText,
+    MenuItem,
+    MenuList,
+    Typography
 } from '@mui/material';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/hooks';
@@ -23,7 +25,7 @@ export type SidebarFilterProps = {
     size: ResponsiveSize,
 };
 
-export default function SidebarFilter ({size}: SidebarFilterProps) {
+export default function SidebarFilter({size}: SidebarFilterProps) {
     const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch();
 
@@ -39,38 +41,38 @@ export default function SidebarFilter ({size}: SidebarFilterProps) {
         keyword = 'All';
     }
 
+    const hasFilter = keyword !== 'All';
+
     if (isSmallResponse(size)) {
         return (
             <div className="sidebar-filter-header">
-                <IconButton sx={{ margin: '0 auto'}} onClick={() => setOpen(true)}>
+                <IconButton sx={{margin: '0 auto'}} onClick={() => setOpen(true)}>
                     <Icon path={mdiFilterPlusOutline} size={1}/>
                 </IconButton>
                 <Dialog open={open} onClose={() => setOpen(false)}>
                     <DialogTitle>Keyword &quot;{keyword}&quot;</DialogTitle>
                     <DialogContent>
-                        <KeywordBubbles counts={keywords} onFilter={handleFilter}/>
+                        <KeywordBubbles counter={keywords} selected={keyword} onFilter={handleFilter}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleFilter('')}>Clear</Button>
                     </DialogActions>
                 </Dialog>
             </div>
-        )
+        );
     }
     return (
         <>
-            <List>
-                <ListItem
-                    secondaryAction={
-                        <IconButton onClick={() => handleFilter('')}>
-                            <Icon path={mdiDeleteOutline} size={1}/>
-                        </IconButton>
-                    }
-                >
-                    <ListItemText>Keyword &quot;{keyword}&quot;</ListItemText>
-                </ListItem>
-            </List>
-            <KeywordBubbles counts={keywords} onFilter={handleFilter}/>
+            <Typography variant="h6" mt={2} pl={2}>Keywords</Typography>
+            <MenuList>
+                <MenuItem key={'delete-filter'} onClick={() => handleFilter('')} divider={true} disabled={!hasFilter}>
+                    <ListItemIcon>
+                        <Icon path={mdiDeleteOutline} size={1}/>
+                    </ListItemIcon>
+                    <ListItemText>Remove Filter</ListItemText>
+                </MenuItem>
+            </MenuList>
+            <KeywordBubbles counter={keywords} selected={keyword} onFilter={handleFilter}/>
         </>
     );
 }
