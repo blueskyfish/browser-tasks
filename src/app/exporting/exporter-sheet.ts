@@ -1,19 +1,16 @@
-import dayjs from 'dayjs';
 import * as XLSX from 'xlsx';
-import { ExportTask } from './export-task';
+import { ExportTask } from './exporter-task';
+import { toFilename } from './exporter-util';
 
-const toFilename = (): string => {
-    return `BrowserTasks-${dayjs().format('YYYY-MM-DD-HH-mm')}.xlsx`;
-}
 
-export default function excelBuilder(taskList: ExportTask[]): boolean {
+export default function exporterSheet(taskList: ExportTask[]): boolean {
     try {
         const ws = XLSX.utils.json_to_sheet(taskList);
         const wb: XLSX.WorkBook = {
             Sheets: {'tasks': ws},
             SheetNames: ['tasks'],
         };
-        const filename = toFilename();
+        const filename = toFilename('xlsx');
         XLSX.writeFileXLSX(wb, filename, {bookType: 'xlsx', type: 'array'});
         console.info('Export %s tasks into %s', taskList.length, filename);
         return true;

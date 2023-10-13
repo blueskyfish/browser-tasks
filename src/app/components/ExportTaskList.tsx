@@ -1,16 +1,18 @@
 import { Button, Divider, Grid, Paper, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Task } from '../../features/tasks/task';
-import { ExportTask } from '../excel/export-task';
+import { ExportTask } from '../exporting/exporter-task';
 import './ExportTaskList.css';
 import CheckBoxTaskList from './CheckBoxTaskList';
+import FormatChoose from './FormatChoose';
 
 export type ExportTaskListProps = {
     taskList: Task[];
     onExport: (taskList: ExportTask[]) => void;
+    onFormat: (format: string) => void;
 };
 
-export default function ExportTaskList({taskList, onExport}: ExportTaskListProps) {
+export default function ExportTaskList({taskList, onExport, onFormat}: ExportTaskListProps) {
     const [selected, setSelected] = useState(taskList.map((t: Task) => t.id));
 
     const handleExport = () => {
@@ -39,7 +41,7 @@ export default function ExportTaskList({taskList, onExport}: ExportTaskListProps
     return (
         <Paper className="export-task-list">
             <Grid container spacing={1}>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={12} md={3}>
                     <div className="export-padding">
                         <Button color="primary" variant={'contained'} onClick={() => handleExport()}>
                             Export
@@ -48,9 +50,11 @@ export default function ExportTaskList({taskList, onExport}: ExportTaskListProps
                         <Typography variant="body2" pt={2}>
                             Tasks ({numSelected} / {rowCount})
                         </Typography>
+
+                        <FormatChoose label="Export format" format="csv" onFormat={onFormat}/>
                     </div>
                 </Grid>
-                <Grid item xs={12} md={10}>
+                <Grid item xs={12} md={9}>
                     <div className="export-padding">
                         <CheckBoxTaskList taskList={taskList} selected={selected} onSelection={handleSelection}/>
                     </div>

@@ -6,8 +6,9 @@ import { selectFilteredTaskList } from '../../features/tasks/taskSelectors';
 import ExportTaskList from '../components/ExportTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
-import excelBuilder from '../excel/excel-builder';
-import { ExportTask } from '../excel/export-task';
+import { exporterFactory } from '../exporting/exporter-factory';
+import exporterSheet from '../exporting/exporter-sheet';
+import { ExportTask } from '../exporting/exporter-task';
 
 enum ExportNotify {
     Nothing,
@@ -18,14 +19,20 @@ enum ExportNotify {
 export default function ExportPage() {
     const {setSideMenu} = useContext(SidebarContext);
     const [notify, setNotify] = useState(ExportNotify.Nothing);
+    const [format, setFormat] = useState("csv");
     const taskList = useAppSelector(selectFilteredTaskList);
 
     const handleExport = (list: ExportTask[]): void => {
-        if (excelBuilder(list)) {
+        const exporter = exporterFactory(format);
+        if (!!exporter && exporter(list)) {
             setNotify(ExportNotify.Success);
         } else {
             setNotify(ExportNotify.Error);
         }
+    };
+
+    const handleFormat = (format: string): void => {
+        setFormat(format);
     }
 
     const isSuccess = notify === ExportNotify.Success;
@@ -50,7 +57,7 @@ export default function ExportPage() {
                     <p>Your export of task list is failed.</p>
                 </Alert>
             )}
-            <ExportTaskList taskList={taskList} onExport={handleExport}/>
+            <ExportTaskList taskList={taskList} onExport={handleExport} onFormat={handleFormat}/>
         </>
     )
 }
