@@ -1,12 +1,28 @@
 
 .version {
-    color: #aaa;
     font-size: 0.9rem;
     text-align: center;
     position: absolute;
     left: var(--gap-2);
     bottom: var(--gap-1);
     right: var(--gap-2);
+}
+
+.version .info {
+    color: #aaa;
+}
+
+.version .label {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.version .label.offline {;
+    color: red;
+}
+
+.version .label.online {
+    color: green;
 }
 
 .version.xs, .version.sm {
