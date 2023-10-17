@@ -6,6 +6,7 @@ import SidebarContext, { SideMenu } from '../context/sidebar.context';
 import { useNavigateExport, useNavigateHelp, useNavigateHome, useNavigateNew } from '../hooks/navigate';
 import { isSmallResponse, useResponsiveSize } from '../media-query/useResponsiveSize';
 import avatar from './avatar.png';
+import Offline from './Offline';
 import ResponsiveInfo from './ResponsiveInfo';
 import './Sidebar.css';
 import SidebarFilter from './SidebarFilter';
@@ -58,7 +59,9 @@ export default function Sidebar() {
             </MenuList>
             <SidebarFilter size={size} />
             <ResponsiveInfo size={size}/>
-            <Version size={size}/>
+            <Offline>
+                {(state) => (<Version size={size} state={state}/>)}
+            </Offline>
         </aside>
     );
 }
