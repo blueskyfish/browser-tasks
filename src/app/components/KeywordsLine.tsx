@@ -25,7 +25,7 @@ export default function KeywordsLine({title, keywords}: KeywordListProps) {
             {title && (<p className="title">{title}</p>)}
             <div className="chip-line">
                 {keywords.map((k: string, index) => (
-                    <Chip key={index} label={k} variant="filled" size={getThemeDense(size)} sx={{marginRight: '0.25rem'}}/>
+                    <Chip key={index} label={k} variant="filled" size={getThemeDense(size)} sx={{mr: '0.25rem', mt: '2px'}}/>
                 ))}
             </div>
         </div>
