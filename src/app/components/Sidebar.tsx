@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import SidebarContext, { SideMenu } from '../context/sidebar.context';
 import { useNavigateExport, useNavigateHelp, useNavigateHome, useNavigateNew } from '../hooks/navigate';
 import { isSmallResponse, useResponsiveSize } from '../media-query/useResponsiveSize';
-import avatar from './avatar.jpg';
+import avatar from './avatar.png';
 import ResponsiveInfo from './ResponsiveInfo';
 import './Sidebar.css';
 import SidebarFilter from './SidebarFilter';

@@ -5,6 +5,12 @@
 > 
 > <https://blueskyfish.github.io/browser-tasks/>
 
+## Feature
+
+* Only local storage. No data are sent to internet
+* Export tasks as csv-, json- or sheet file (sheet as Excel)
+* Filter the keywords
+
 
 ## Screenshots
 
@@ -23,6 +29,33 @@
 ### Edit
 
 ![Browser Tasks (Edit)](screenshot-ipad-edit.png)
+
+## PWA
+
+> Progressive Web App
+> 
+> * Wikipedia Deutsch <https://de.wikipedia.org/wiki/Progressive_Web_App>
+> * Wikipedia English <https://en.wikipedia.org/wiki/Progressive_web_app>
+
+The stackoverflow help me to convert into a PWA.
+<https://stackoverflow.com/questions/71158834/how-to-make-an-existing-react-app-installable-pwa>
+
+Thanks :-)
+
+## Favicon
+
+### Generator
+
+This favicon was generated using the following font:
+
+- Font Title: Leckerli One
+- Font Author: Copyright (c) 2011 Gesine Todt (www.gesine-todt.de hallo@gesine-todt.de), with Reserved Font Names "Leckerli"
+- Font Source: http://fonts.gstatic.com/s/leckerlione/v20/V8mCoQH8VCsNttEnxnGQ-1itLZxcBtItFw.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
+
+### Maskable Favicon
+
+Create the maskable favicon with <https://maskable.app/editor>.
 
 
 ## License

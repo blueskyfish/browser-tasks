@@ -1,9 +1,9 @@
-import { Button, Divider, Grid, Paper, Typography } from '@mui/material';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Task } from '../../features/tasks/task';
 import { ExportTask } from '../exporting/exporter-task';
-import './ExportTaskList.css';
 import CheckBoxTaskList from './CheckBoxTaskList';
+import './ExportTaskList.css';
 import FormatChoose from './FormatChoose';
 
 export type ExportTaskListProps = {

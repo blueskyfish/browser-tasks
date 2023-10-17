@@ -7,7 +7,6 @@ import ExportTaskList from '../components/ExportTaskList';
 import Header from '../components/Header';
 import SidebarContext from '../context/sidebar.context';
 import { exporterFactory } from '../exporting/exporter-factory';
-import exporterSheet from '../exporting/exporter-sheet';
 import { ExportTask } from '../exporting/exporter-task';
 
 enum ExportNotify {

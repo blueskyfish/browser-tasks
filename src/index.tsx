@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import App from './app/App';
 import './index.css';
 import { store } from './features/store';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -22,6 +23,18 @@ root.render(
         </Provider>
     </React.StrictMode>
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.register({
+    onSuccess: () => {
+        console.info('service worker register...');
+    },
+    onUpdate: () => {
+        console.info('service worker update...')
+    }
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
