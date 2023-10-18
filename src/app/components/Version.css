@@ -28,3 +28,12 @@
 .version.xs, .version.sm {
     font-size: 0.75rem;
 }
+
+.version.xs {
+    left: 0;
+    right: 0;
+}
+.version.xs .label, .version.xs.info {
+    display: block;
+    margin: 0;
+}
