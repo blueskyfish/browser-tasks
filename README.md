@@ -5,6 +5,26 @@
 > 
 > <https://blueskyfish.github.io/browser-tasks/>
 
+## Requirement
+
+| Tools                                                         | Description                                      |
+|---------------------------------------------------------------|--------------------------------------------------|
+| [**Volta**: https://volta.sh/](https://volta.sh/)             | *The Hassle-Free JavaScript Tool Manager*        |
+| [**NodeJS 20**: https://nodejs.org/en](https://nodejs.org/en) | *Run JavaScript Everywhere*                      |
+| [**React 18**: https://react.dev/](https://react.dev/)        | *The library for web and native user interfaces* |
+
+
+## Install
+
+The tool volta is installed first. Then go into the project root directory and install all node dependencies.
+
+```shell
+curl https://get.volta.sh | bash
+npm install
+npm run
+```
+
+
 ## Feature
 
 * Only local storage. No data are sent to internet
