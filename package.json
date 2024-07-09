@@ -52,7 +52,8 @@
     "react-scripts": {
       "@svgr/webpack": "8.1.0",
       "postcss": "8.4.31"
-    }
+    },
+    "braces": "3.0.3"
   },
   "scripts": {
     "start": "BROWSER=none PORT=6080 react-scripts start",
